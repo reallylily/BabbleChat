@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js", 
+    "frontend-install": "npm install --prefix frontend", 
+    "frontend": "npm start --prefix frontend", 
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "keywords": [],
   "author": "",
