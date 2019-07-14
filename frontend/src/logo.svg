@@ -5,3 +5,4 @@
         <path d="M520.5 78.1z"/>
     </g>
 </svg>
+<!-- npm install @babel/core @babel/preset-env @babel/preset-react babel-loader jquery react react-addons-css-transition-group react-dom react-redux react-router-dom recharts redux redux-logger redux-thunk webpack webpack-cli  -->
