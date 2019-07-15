@@ -39,5 +39,5 @@ Knows: Japanese
 
 ## WireFrames
 
-![alt text](https://github.com/tokyosuite/BugMojo/blob/master/img1.png)
+![alt text](https://github.com/tokyosuite/BabbleChat/blob/master/img1.png)
 
