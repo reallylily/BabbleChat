@@ -2,6 +2,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Footer from '../footer/footer'; 
+import { Link } from 'react-router-dom'; 
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -62,10 +63,14 @@ class SignupForm extends React.Component {
 
   render() {
     return (
+      <>
       <div className="login-form-container">
         <h1 className="login-form-title">Sign Up</h1> 
         <form onSubmit={this.handleSubmit}>
           <div className="login-form">
+            <div className="login-form-tagline">
+                It's free and takes less than a minute
+            </div>
             <br/>
               <input type="text"
                 value={this.state.email}
@@ -95,31 +100,48 @@ class SignupForm extends React.Component {
                 className="login-form-text-input"
               />
             <br/>
-            <label>I want to learn</label>
-            <select name="to_learn"
-                onChange={this.update('to_learn')}
-              >
-              <option value="english">English</option>
-              <option value="spanish">Spanish</option>
-              <option value="japanese">Japanese</option>
-              <option value="chinese">Chinese</option>
-            </select>
+
+            <label className="login-form-text">
+                <span className="login-form-language">I want to learn</span>
+                <select name="to_learn"
+                  onChange={this.update('to_learn')}
+                  className="login-form-selector">
+                  <option value="english">English</option>
+                  <option value="spanish">Spanish</option>
+                  <option value="japanese">Japanese</option>
+                  <option value="chinese">Chinese</option>
+                </select>
+            </label>
             <br/>
-            <label>I want to share</label>
-            <select name="to_share"
-                onChange={this.update('to_share')}
-              >
-              <option value="english">English</option>
-              <option value="spanish">Spanish</option>
-              <option value="japanese">Japanese</option>
-              <option value="chinese">Chinese</option>
-            </select>
+            <label className="login-form-text">
+                <span className="login-form-language">I want to share</span>
+                <select name="to_share"
+                  onChange={this.update('to_share')}
+                  className="login-form-selector">
+                  <option value="english">English</option>
+                  <option value="spanish">Spanish</option>
+                  <option value="japanese">Japanese</option>
+                  <option value="chinese">Chinese</option>
+                </select>
+            </label>
+
+
+
             <input type="submit" value="Submit" className="login-form-submit" />
             {this.renderErrors()}
+
+            <div className="login-links">
+              Already a member? <Link to="/login" className="login-link-to-signin">Login</Link>
+            </div>
+            <div className="login-form-agreement">
+                By clicking the Sign Up button, you agree to our <span className="terms-conditions">Terms and Conditions</span> and <span className="terms-conditions">Privacy Policy</span>
+            </div>
+
           </div>
         </form>
-        <Footer />
       </div>
+      <Footer />
+      </>
     );
   }
 }

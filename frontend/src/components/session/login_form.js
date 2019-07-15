@@ -62,6 +62,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
+      <>
+      <div className="login-form-speech-bubble-container">
+          <i className="fas fa-comments login-form-speech-bubble"></i>
+      </div>
       <div className="login-form-container">
         <h1 className="login-form-title">Login</h1>
         <form onSubmit={this.handleSubmit}>
@@ -84,8 +88,10 @@ class LoginForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
-        <Footer />
+        
       </div>
+      <Footer/>
+      </>
     );
   }
 }
