@@ -1,15 +1,18 @@
 
 import React from 'react';
+import Footer from '../footer/footer'; 
+
+import '../../index.css'; 
+
 
 class MainPage extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>A Twitter Clone</h1>
-        <footer>
-          Copyright &copy; 2019 Chirper
-        </footer>
+      <div className="splash">
+        <h1 className="title">BabbleChat<i class="fas fa-comments"></i></h1>
+        
+        <Footer />
       </div>
     );
   }

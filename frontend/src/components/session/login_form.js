@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Footer from '../footer/footer'; 
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -61,25 +62,29 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="login-form-container">
+        <h1 className="login-form-title">Login</h1>
         <form onSubmit={this.handleSubmit}>
           <div>
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
+                className="login-form-text-input"
               />
             <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
+                className="login-form-text-input"
               />
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit" className="login-form-submit" />
             {this.renderErrors()}
           </div>
         </form>
+        <Footer />
       </div>
     );
   }
