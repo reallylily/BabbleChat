@@ -12,8 +12,8 @@ class SignupForm extends React.Component {
       handle: '',
       password: '',
       password2: '',
-      to_learn: 'english',
-      to_share: 'english',
+      to_learn: 'en',
+      to_share: 'en',
       errors: {}
     };
 
