@@ -11,6 +11,7 @@ const passport = require('passport');
 
 const users = require('./routes/api/users'); 
 const tweets = require('./routes/api/tweets'); 
+const chat = require('./routes/chat');
 
 const User = require('./models/User'); 
 
@@ -43,19 +44,19 @@ app.use(bodyParser.json());
 //COMMENTED OUT END
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.use("/api/users", users); 
 app.use("/api/tweets", tweets); 
-
+// app.use('/chat', chat);
 const port = process.env.PORT || 5000; 
 
 //COMMENTED OUT
 // app.listen(port, () => {
 //     console.log(`Listening on port ${port}`)
 // }); 
-//COMMENTED OUT END
+// COMMENTED OUT END
 
 //new code
 server.listen(port, () => {
