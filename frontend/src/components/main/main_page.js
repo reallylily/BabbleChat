@@ -10,8 +10,8 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="splash">
-        <h1 className="title">BabbleChat<i class="fas fa-comments"></i></h1>
-        
+        <h1 className="title">BabbleChat
+          <i className="fas fa-comments title-speech-bubble"></i></h1>
         <Footer />
       </div>
     );
