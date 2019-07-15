@@ -8,7 +8,7 @@ const passport = require('passport');
 const users = require('./routes/api/users'); 
 const tweets = require('./routes/api/tweets'); 
 
-const User = require('./models/User'); 
+// const User = require('./models/User'); 
 
 
 mongoose.connect(db, { useNewUrlParser: true })
@@ -24,12 +24,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json()); 
 
 app.get("/", (req, res) => {
-    const user = new User({
-        handle: "jim", 
-        email: "jim@jim.jim", 
-        password: "jimisgreat123"
-    })
-    user.save(); 
     res.send("Hello Wd!"); 
 }); 
 
