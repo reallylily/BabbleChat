@@ -38,3 +38,6 @@ Knows: Japanese
 - [ ] Default matching: match users automatically 
 
 ## WireFrames
+
+![alt text](https://github.com/tokyosuite/BugMojo/blob/master/img1.png)
+
