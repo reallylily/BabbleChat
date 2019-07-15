@@ -8,6 +8,8 @@ module.exports = function validateRegisterInput(data) {
     data.email = validText(data.email) ? data.email : ""; 
     data.password = validText(data.password) ? data.password : ""; 
     data.password2 = validText(data.password2) ? data.password2 : ""; 
+    data.to_learn = validText(data.to_learn) ? data.to_learn : ""; 
+    data.to_share = validText(data.to_share) ? data.to_share : ""; 
     
     if (!Validator.isLength(data.handle, { min: 2, max: 30 })) {
         errors.handle = "Handle must be between 2 and 30 characters"; 

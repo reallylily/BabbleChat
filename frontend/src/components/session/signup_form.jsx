@@ -11,6 +11,8 @@ class SignupForm extends React.Component {
       handle: '',
       password: '',
       password2: '',
+      to_learn: 'english',
+      to_share: 'english',
       errors: {}
     };
 
@@ -38,9 +40,11 @@ class SignupForm extends React.Component {
       email: this.state.email,
       handle: this.state.handle,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      to_learn: this.state.to_learn,
+      to_share: this.state.to_share,
     };
-
+    console.log(user)
     this.props.signup(user, this.props.history); 
   }
 
@@ -91,7 +95,31 @@ class SignupForm extends React.Component {
                 className="login-form-text-input"
               />
             <br/>
+<<<<<<< HEAD:frontend/src/components/session/signup_form.js
             <input type="submit" value="Submit" className="login-form-submit"/>
+=======
+            <label>I want to learn</label>
+            <select name="to_learn"
+                onChange={this.update('to_learn')}
+              >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
+            </select>
+            <br/>
+            <label>I want to share</label>
+            <select name="to_share"
+                onChange={this.update('to_share')}
+              >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
+            </select>
+
+            <input type="submit" value="Submit" />
+>>>>>>> 3e7139cb1eaf28b66f2d4355dc7646e5d2dc1d7e:frontend/src/components/session/signup_form.jsx
             {this.renderErrors()}
           </div>
         </form>
