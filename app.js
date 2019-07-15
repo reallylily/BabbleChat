@@ -1,6 +1,10 @@
 const express = require('express'); 
 const app = express(); 
-const db = require('./config/keys').mongoURI;
+
+const server = require('http').Server(app);
+
+const db = require('./config/keys_dev').mongoURI;
+
 const mongoose = require('mongoose'); 
 const bodyParser = require('body-parser'); 
 const passport = require('passport'); 
@@ -10,6 +14,9 @@ const tweets = require('./routes/api/tweets');
 
 const User = require('./models/User'); 
 
+//new code
+const socket = require('socket.io');
+//new code end
 
 mongoose.connect(db, { useNewUrlParser: true })
     .then(() => console.log('Connected to mongoDB'))
@@ -23,21 +30,46 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(bodyParser.json()); 
 
-app.get("/", (req, res) => {
-    const user = new User({
-        handle: "jim", 
-        email: "jim@jim.jim", 
-        password: "jimisgreat123"
-    })
-    user.save(); 
-    res.send("Hello Wd!"); 
-}); 
+// COMMENTED OUT
+// app.get("/", (req, res) => {
+//     const user = new User({
+//         handle: "jim", 
+//         email: "jim@jim.jim", 
+//         password: "jimisgreat123"
+//     })
+//     user.save(); 
+//     res.send("Hello Wd!"); 
+// }); 
+//COMMENTED OUT END
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 app.use("/api/users", users); 
 app.use("/api/tweets", tweets); 
 
 const port = process.env.PORT || 5000; 
 
-app.listen(port, () => {
+//COMMENTED OUT
+// app.listen(port, () => {
+//     console.log(`Listening on port ${port}`)
+// }); 
+//COMMENTED OUT END
+
+//new code
+server.listen(port, () => {
     console.log(`Listening on port ${port}`)
-}); 
+});
+
+const io = socket(server);
+
+io.on('connection', (socket) =>{
+    console.log('made socket connection')
+});
+
+//new code end
+
+module.exports = {
+    port
+}

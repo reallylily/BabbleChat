@@ -1,7 +1,6 @@
 {
   "name": "babble2",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -25,10 +24,12 @@
     "mongoose": "^5.6.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "socket.io": "^2.2.0",
     "validator": "^11.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "description": ""
 }
