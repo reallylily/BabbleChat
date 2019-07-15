@@ -39,5 +39,5 @@ Knows: Japanese
 
 ## WireFrames
 
-![alt text](https://github.com/tokyosuite/BabbleChat/blob/master/img1.png)
-
+<img src="https://github.com/tokyosuite/BabbleChat/blob/master/img1.png" width="200">
+<img src="https://github.com/tokyosuite/BabbleChat/blob/master/img2.png" width=200">
