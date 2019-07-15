@@ -291,5 +291,29 @@ select {
 
 
 /*****************************/
-/******** LOGIN STYLING ******/
+/******** PROFILE PAGE  ******/
 /*****************************/
+.profile-page {
+  padding: 3rem; 
+}
+
+.profile-card {
+  width: 200px; 
+}
+
+.profile-description {
+  padding-top: 1rem; 
+  padding-bottom: 1rem; 
+}
+
+.profile-snippet {
+  font-family: 'Raleway', sans-serif; 
+  margin-top: 0.35rem; 
+  margin-bottom: 0.35rem; 
+  display: flex; 
+  justify-content: space-between; 
+}
+
+.profile-snippet-name {
+  font-weight: bold; 
+}
