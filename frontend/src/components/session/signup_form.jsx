@@ -10,6 +10,8 @@ class SignupForm extends React.Component {
       handle: '',
       password: '',
       password2: '',
+      to_learn: 'english',
+      to_share: 'english',
       errors: {}
     };
 
@@ -37,9 +39,11 @@ class SignupForm extends React.Component {
       email: this.state.email,
       handle: this.state.handle,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      to_learn: this.state.to_learn,
+      to_share: this.state.to_share,
     };
-
+    console.log(user)
     this.props.signup(user, this.props.history); 
   }
 
@@ -85,6 +89,26 @@ class SignupForm extends React.Component {
                 placeholder="Confirm Password"
               />
             <br/>
+            <label>I want to learn</label>
+            <select name="to_learn"
+                onChange={this.update('to_learn')}
+              >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
+            </select>
+            <br/>
+            <label>I want to share</label>
+            <select name="to_share"
+                onChange={this.update('to_share')}
+              >
+              <option value="english">English</option>
+              <option value="spanish">Spanish</option>
+              <option value="japanese">Japanese</option>
+              <option value="chinese">Chinese</option>
+            </select>
+
             <input type="submit" value="Submit" />
             {this.renderErrors()}
           </div>
