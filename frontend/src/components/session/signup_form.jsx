@@ -78,7 +78,7 @@ class SignupForm extends React.Component {
         <option value="bg">Bulgarian</option>
         <option value="ca">Catalan</option>
         <option value="ceb">Cebuano</option>
-        <option value="zh-CN">Chinese (Simplified)</option>
+        <option value="zh">Chinese (Simplified)</option>
         <option value="zh-TW">Chinese (Traditional)</option>
         <option value="co">Corsican</option>
         <option value="hr">Croatian</option>

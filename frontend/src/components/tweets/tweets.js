@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import TweetBox from './tweet_box';
+// import TranslateMessageContainer from '../translate/translate_message_container'
 
 class Tweet extends React.Component {
   constructor(props) {
