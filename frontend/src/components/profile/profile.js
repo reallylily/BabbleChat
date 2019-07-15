@@ -1,5 +1,10 @@
 
 import React from 'react';
+import '../../index.css'; 
+import Footer from '../footer/footer'; 
+
+import ProfileSnippet from './profile_snippet'; 
+
 import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
@@ -14,26 +19,37 @@ class Profile extends React.Component {
     componentWillMount() {
         console.log(this.props.currentUser.id)
         this.props.fetchUserTweets(this.props.currentUser.id);
+        this.props.fetchUser(this.props.currentUser.id)
     }
 
     componentWillReceiveProps(newState) {
         this.setState({ tweets: newState.tweets });
-    }   
+    }
+
+    extractDate(date) {
+      return date.slice(0, 10); 
+    }
     
     render() {
-        if (this.state.tweets.length === 0) {
-          return (<div>This user has no Tweets</div>)
-        } else {
-          return (
-            <div>
-              <h2>All of This User's Tweets</h2>
-              {this.state.tweets.map(tweet => (
-                <TweetBox key={tweet._id} text={tweet.text} />
-              ))}
+      console.log(this.props.currentUser)
+        return (
+          <>
+          {this.props.currentUser &&
+          <div className="profile-page">
+            <div className="profile-card">
+              <img width="200px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
+              <div className="profile-description">
+                <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
+                <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
+                <ProfileSnippet name="Learning" value={this.props.currentUser.to_learn} />
+                <ProfileSnippet name="Speaks" value={this.props.currentUser.to_share} />
+              </div>
             </div>
-          );
-        }
-      }
+          </div>}
+          <Footer />
+          </>
+        )
+    }
 }
 
 export default Profile;
