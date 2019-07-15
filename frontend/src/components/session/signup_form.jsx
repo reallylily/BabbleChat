@@ -95,9 +95,6 @@ class SignupForm extends React.Component {
                 className="login-form-text-input"
               />
             <br/>
-<<<<<<< HEAD:frontend/src/components/session/signup_form.js
-            <input type="submit" value="Submit" className="login-form-submit"/>
-=======
             <label>I want to learn</label>
             <select name="to_learn"
                 onChange={this.update('to_learn')}
@@ -117,9 +114,7 @@ class SignupForm extends React.Component {
               <option value="japanese">Japanese</option>
               <option value="chinese">Chinese</option>
             </select>
-
-            <input type="submit" value="Submit" />
->>>>>>> 3e7139cb1eaf28b66f2d4355dc7646e5d2dc1d7e:frontend/src/components/session/signup_form.jsx
+            <input type="submit" value="Submit" className="login-form-submit" />
             {this.renderErrors()}
           </div>
         </form>
