@@ -293,6 +293,7 @@ select {
 /*****************************/
 /******** PROFILE PAGE  ******/
 /*****************************/
+
 .profile-page {
   padding: 3rem; 
 }
@@ -316,4 +317,90 @@ select {
 
 .profile-snippet-name {
   font-weight: bold; 
+}
+
+/********************************/
+/******** CHAT USERS PAGE  ******/
+/********************************/
+
+.chat-users-page {
+  padding: 3rem; 
+}
+
+.chat-users-item {
+  font-family: 'Raleway', sans-serif; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 0.5rem; 
+  border: 1px solid #005691; 
+  background: #005691; 
+  color: white; 
+  border-radius: 15px; 
+  padding: 1rem; 
+}
+
+.chat-users-item:hover {
+  background: #1a85cc; 
+  cursor: pointer; 
+}
+
+.chat-users-right {
+  display: flex; 
+  direction: row; 
+  align-items: center; 
+}
+
+.chat-users-language-pref {
+  display: flex; 
+  flex-direction: row; 
+  margin-right: 2rem; 
+  text-align: right; 
+}
+
+.chat-users-start-convo-button {
+    background-color: transparent; 
+    color: white; 
+    border: none; 
+    border-radius: 15px; 
+    padding-top: 0.5rem; 
+    padding-bottom: 0.5rem; 
+    height: 100%; 
+    font-size: 1.2rem; 
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold; 
+}
+
+.chat-users-start-convo-button:hover {
+    border: none; 
+    background-color: #1a85cc; 
+    cursor: pointer; 
+}
+
+
+.chat-users-start-convo-button:focus {
+  outline: none; 
+  border: none; 
+  cursor: pointer; 
+}
+
+.chat-users-tags {
+  background: #e8f1f5;
+  color: black;  
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem; 
+  padding-top: 0.1rem; 
+  padding-bottom: 0.1rem; 
+  border-radius: 10px; 
+  margin-top: 0.35rem; 
+}
+
+.chat-users-learning {
+  margin-right: 1rem; 
+}
+
+.chat-users-number {
+  font-size: 1.5rem; 
+  font-family: 'Literata', serif;
+  margin-bottom: 1.5rem; 
 }

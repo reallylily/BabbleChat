@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Footer from '../footer/footer'; 
 import UsersIndexItem from './users_index_item';
 
 class UsersIndex extends React.Component {
@@ -28,13 +29,16 @@ class UsersIndex extends React.Component {
             <UsersIndexItem key={user._id} user={user} />
         ))
       return (
-        <div>
-          <h2>All Users</h2>
+        <>
+        <div className="chat-users-page">
+            <h2 className="chat-users-number">{users.length} <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> online</h2>
           <ul>
               {users}
           </ul>
           {console.log(this.props.users)}
         </div>
+        <Footer />
+        </>
       );
     }
   }

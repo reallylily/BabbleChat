@@ -7,7 +7,7 @@ class TranslateMessage extends React.Component {
   render() {
     const translate = setCORS("http://cors-anywhere.herokuapp.com/");
     console.log(this.props.user)
-    translate(this.props.text, { to: 'en' })
+    translate(this.props.text, { to: 'es' })
       .then(res => {
         // I do not eat six days
         console.log(res.text)
