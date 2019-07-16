@@ -1,5 +1,4 @@
-const languages = {
-    en:"English",    
+const languages = {    
     sq:"Albanian",
     af:"Afrikaans",
     am:"Amharic",
@@ -73,7 +72,7 @@ const languages = {
     pl:"Polish",
     pt:"Portuguese (Portugal, Brazil)",
     pa:"Punjabi",
-    eo:"Romanian",
+    ro:"Romanian",
     ru:"Russian",
     sm:"Samoan",
     gd:"Scots Gaelic",
