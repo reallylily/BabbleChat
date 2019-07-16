@@ -17,7 +17,6 @@ class NavBar extends React.Component {
 
   // Selectively render links dependent on whether the user is logged in
   // <Link to={'/tweets'} className="navbar-header-link">All Tweets</Link>
-  // <Link to={'/new_tweet'} className="navbar-header-link">Write a Tweet</Link>
   getLinks() {
     if (this.props.loggedIn) {
       return (
@@ -25,6 +24,7 @@ class NavBar extends React.Component {
           <Link to={'/users'} className="navbar-header-link">Find a New Chat Partner</Link>
           <Link to={'/chat'} className="navbar-header-link">Live Chat</Link>
           <Link to={'/profile'} className="navbar-header-link">Profile</Link>
+          <Link to={'/new_tweet'} className="navbar-header-link">Write a Tweet</Link>
           <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
         </div>
         )

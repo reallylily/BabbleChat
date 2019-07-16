@@ -18,9 +18,9 @@ class Profile extends React.Component {
     }
     
     componentWillMount() {
-        console.log(this.props.currentUser.id)
-        this.props.fetchUserTweets(this.props.currentUser.id);
-        this.props.fetchUser(this.props.currentUser.id)
+        // console.log(this.props.currentUser.id)
+        // this.props.fetchUserTweets(this.props.currentUser.id);
+        // this.props.fetchUser(this.props.currentUser.id)
     }
 
     componentWillReceiveProps(newState) {
@@ -32,7 +32,7 @@ class Profile extends React.Component {
     }
     
     render() {
-      console.log(this.props.currentUser)
+      // console.log(this.props.currentUser)
         return (
           <>
           {this.props.currentUser &&

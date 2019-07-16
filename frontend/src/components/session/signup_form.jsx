@@ -45,8 +45,16 @@ class SignupForm extends React.Component {
       to_learn: this.state.to_learn,
       to_share: this.state.to_share,
     };
-    console.log(user)
-    this.props.signup(user, this.props.history); 
+    
+    this.props.signup(user, this.props.history).then(()=>{
+      let user = {
+        email: this.state.email,
+        password: this.state.password,
+      }
+      this.props.login(user).then(()=> this.props.history.push('/profile'));
+    })
+
+    
   }
 
   renderErrors() {
