@@ -15,16 +15,18 @@ class Chat extends React.Component {
             displayEmoji: false, 
             currentEmojiPage: 1 
         }
-        this.socket = io(this.state.endpoint)
+        this.socket = io();
     }
 
     componentDidMount() {
         console.log('hello');
+        
         // const socket = io(this.state.endpoint);
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
         }); 
-            this.socket.on('display_message', (message_object) => {
+        
+        this.socket.on('display_message', (message_object) => {
             let new_message_array = this.state.messages;
             new_message_array.push(message_object['message']);
             this.setState({ messages: new_message_array, currentMessage: "" });
