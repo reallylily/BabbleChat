@@ -12,7 +12,7 @@ const passport = require('passport');
 const users = require('./routes/api/users'); 
 const tweets = require('./routes/api/tweets'); 
 
-const User = require('./models/User'); 
+// const User = require('./models/User'); 
 
 //new code
 const socket = require('socket.io');
@@ -30,21 +30,13 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(bodyParser.json()); 
 
-// COMMENTED OUT
-// app.get("/", (req, res) => {
-//     const user = new User({
-//         handle: "jim", 
-//         email: "jim@jim.jim", 
-//         password: "jimisgreat123"
-//     })
-//     user.save(); 
-//     res.send("Hello Wd!"); 
-// }); 
-//COMMENTED OUT END
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
 });
+// app.get("/", (req, res) => {
+//     res.send("Hello Wd!"); 
+// }); 
 
 app.use("/api/users", users); 
 app.use("/api/tweets", tweets); 

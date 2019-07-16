@@ -14,6 +14,14 @@ const UserSchema = new Schema({
         type: String, 
         required: true 
     }, 
+    to_learn: {
+        type: String, 
+        required: true 
+    },
+    to_share: {
+        type: String, 
+        required: true 
+    },
     date: {
         type: Date, 
         default: Date.now 

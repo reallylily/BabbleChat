@@ -1,6 +1,8 @@
 
 import React from 'react';
 import TweetBox from './tweet_box';
+import TranslateMessageContainer from '../translate/translate_message_container'
+
 
 class TweetCompose extends React.Component {
   constructor(props) {
@@ -48,7 +50,7 @@ class TweetCompose extends React.Component {
                 </div>
             </form>
             <br />
-            <TweetBox text={this.state.newTweet} />
+            <TranslateMessageContainer text={this.state.newTweet} />
         </div>
     )
   }
