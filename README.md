@@ -2,7 +2,7 @@
 
 ## Background and Overview 
 
-**BabbleChat** is a minimal viable product that aims to make learning languages fun by matching language speakers via live chat. Individuals who sign up select two languages: one that they are fluent in, and one that they want to learn.They are then matched with partners who are fluent in the language they want to learn, and who are learning the language they are fluent in. 
+**BabbleChat** aims to make learning languages fun by matching language speakers via live chat. Individuals who sign up select two languages: one that they are fluent in, and one that they want to learn.They are then matched with partners who are fluent in the language they want to learn, and who are learning the language they are fluent in. 
 
 For example, the users Greg T. and Mona S. would be matched together:  
 
