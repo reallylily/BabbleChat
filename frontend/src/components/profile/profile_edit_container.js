@@ -5,7 +5,6 @@ import { signup, login, edit } from '../../actions/session_actions';
 import ProfileEdit from './profile_edit'
 
 const mapStateToProps = (state) => {
-    // debugger
   return {
     // signedIn: state.session.isSignedIn,
     currentUser: state.session.user,
