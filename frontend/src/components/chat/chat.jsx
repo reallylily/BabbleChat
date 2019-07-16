@@ -15,11 +15,14 @@ class Chat extends React.Component {
             displayEmoji: false, 
             currentEmojiPage: 1 
         }
-        this.socket = io(this.state.endpoint)
+        this.socket = io(this.state.endpoint);
+
+        this.setEmojiMenuRef = this.setEmojiMenuRef.bind(this); 
+        
+        this.handleClickOutsideEmojiMenu = this.handleClickOutsideEmojiMenu.bind(this); 
     }
 
     componentDidMount() {
-        console.log('hello');
         // const socket = io(this.state.endpoint);
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
@@ -29,11 +32,25 @@ class Chat extends React.Component {
             new_message_array.push(message_object['message']);
             this.setState({ messages: new_message_array, currentMessage: "" });
         });
-
+        document.addEventListener('mousedown', this.handleClickOutsideEmojiMenu);
     };
+
 
     componentWillUnmount() {
         this.socket.emit('off');
+        document.removeEventListener('mousedown', this.handleClickOutsideEmojiMenu);
+    }
+
+    setEmojiMenuRef(node) {
+        this.emojiMenuRef = node;
+    }
+
+    handleClickOutsideEmojiMenu(e) {
+        if (this.emojiMenuRef && !this.emojiMenuRef.contains(e.target)) {
+            this.setState({
+                displayEmoji: false 
+            })
+        }
     }
 
     update () {
@@ -45,10 +62,11 @@ class Chat extends React.Component {
 
     handleSubmit (e) {
         e.preventDefault();
-        this.socket.emit('chat_message', {
-            message: this.state.currentMessage
-        });
-        
+        if (this.state.currentMessage !== '') {
+            this.socket.emit('chat_message', {
+                message: this.state.currentMessage
+            });
+        }   
     }
 
     triggerEmojiList(e) {
@@ -104,7 +122,9 @@ class Chat extends React.Component {
         return (
             
             <div className="chat-box">
-                <Display className="chat-box-display-messages" messages={this.state.messages} />
+                <Display className="chat-box-display-messages" 
+                        messages={this.state.messages} />
+
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit} className="chat-box-form">
                         <input type="text" 
@@ -115,12 +135,15 @@ class Chat extends React.Component {
                         <button type="submit" style={{display: 'none'}}/>
 
                         <button className="chat-box-trigger-emoji-list-button"
-                            onClick={(e) => this.triggerEmojiList(e)}>😀</button>
+                            onClick={(e) => this.triggerEmojiList(e)}><i class="far fa-smile"></i>
+                        </button>
                     </form> 
 
+                    <div></div>
                     {this.state.displayEmoji &&
                         <div className="chat-box-emoji-menu">
 
+                        <div className="emoji-category-banner">
                         <button className="emoji-category"
                                 onClick={(e) => this.navigateOne(e)}><i className="fas fa-smile-beam"></i></button>
                         <button className="emoji-category"
@@ -131,7 +154,11 @@ class Chat extends React.Component {
                                 onClick={(e) => this.navigateFour(e)}><i className="fas fa-dog"></i></button>
                         <button className="emoji-category"
                                 onClick={(e) => this.navigateFive(e)}><i className="fas fa-utensils"></i></button>
+                        </div>
+
                             <br />
+
+                            <div className="emoji-items-list" ref={this.setEmojiMenuRef}>
                             {this.state.currentEmojiPage === 1 &&
                                 <>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😀</button>
@@ -367,6 +394,7 @@ class Chat extends React.Component {
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍞</button>
                                 </>
                             }
+                            </div>
 
                         </div>}
                 </div>

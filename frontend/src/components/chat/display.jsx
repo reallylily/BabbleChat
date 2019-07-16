@@ -6,6 +6,20 @@ class Display extends React.Component {
     constructor(props) {
         super(props);
         this.messages = this.props.messages;
+        this.scrollToBottom = this.scrollToBottom.bind(this); 
+
+    }
+
+    componentDidMount() {
+        this.scrollToBottom(); 
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom(); 
+    }
+
+    scrollToBottom = () => {
+        this.messagesEnd.scrollIntoView(); 
     }
 
     render() {
@@ -19,11 +33,14 @@ class Display extends React.Component {
                 <div className="messages">
                     <ul>
                         {messages.map((message, idx) => 
-                            <li key={idx} className="chat-box-message">
+                            <li key={idx} className={idx % 2 === 0 ? "chat-box-message" : "chat-box-message-opponent"}>
                                 {message}
                             </li>)
                         }
                     </ul>
+                </div>
+                <div style={{ float: "left", clear: "both" }}
+                    ref={(el) => { this.messagesEnd = el; }}>
                 </div>
             </div>
         )
