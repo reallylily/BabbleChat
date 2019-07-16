@@ -4,6 +4,7 @@ import '../../index.css';
 import Footer from '../footer/footer'; 
 
 import ProfileSnippet from './profile_snippet'; 
+import languages from '../languages/languages'
 
 import TweetBox from '../tweets/tweet_box';
 
@@ -41,8 +42,8 @@ class Profile extends React.Component {
               <div className="profile-description">
                 <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
-                <ProfileSnippet name="Learning" value={this.props.currentUser.to_learn} />
-                <ProfileSnippet name="Speaks" value={this.props.currentUser.to_share} />
+                <ProfileSnippet name="Learning" value={languages[this.props.currentUser.to_learn]} />
+                <ProfileSnippet name="Speaks" value={languages[this.props.currentUser.to_share]} />
               </div>
             </div>
           </div>}
