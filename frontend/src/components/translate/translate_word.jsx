@@ -34,16 +34,41 @@ class TranslateWord extends React.Component {
     }
 
     render() {
-        /*
-        // or
-        import translate, { setCORS } from "google-translate-api-browser";
-        setCORS("http://cors-anywhere.herokuapp.com/");
-        */
+        const button = () =>{
+            if (this.props.myIndex === 0 && this.props.myIndex === this.props.myLength -1) {
+                return (
+                    <button className="chat-box-message-detail-round-center"
+                        onClick={() => this.handleClick()}>{this.props.text}</button>
+                ) 
+            } else if (this.props.myIndex === 0) {
+                return (
+                    <button className="chat-box-message-detail-round-left"
+                        onClick={() => this.handleClick()}>{this.props.text}</button>
+                )
+            } else if (this.props.myIndex === this.props.myLength - 1) {
+                return (
+                    <button className="chat-box-message-detail-round-right"
+                        onClick={() => this.handleClick()}>{this.props.text}</button>
+                )
+            } else {
+                return (
+                    <button className="chat-box-message-detail"
+                        onClick={() => this.handleClick()}>{this.props.text}</button>
+                )
+            }
+        }
         return (
-            <div>
-                { this.bubble ? this.bubble() : null }
+            <div style={{ display: 'flex', flexDirection: 'column'}}>
+                <span className="chat-box-bubble">{this.bubble ? this.bubble() : null }</span>
+                {button()}
+                
+                {/* {this.props.myIndex === 0 || this.props.myIndex == this.props.myLength - 1 ? 
+                <button className="chat-box-message-detail-round"
+                onClick={()=>this.handleClick()}>{this.props.myIndex}{this.props.text}</button>
+                : 
                 <button className="chat-box-message-detail"
-                onClick={()=>this.handleClick()}>{this.props.text}</button>
+                onClick={() => this.handleClick()}>{this.props.text}</button>
+                } */}
             </div>
         );
     }
