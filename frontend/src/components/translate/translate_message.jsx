@@ -6,9 +6,9 @@ import TranslateWord from './translate_word'
 
 class TranslateMessage extends React.Component {
   render() {
-    const words = this.props.text.split(' ').map((word ,idx) =>(
-      <TranslateWord text={word} key={idx} user={this.props.user}/>
-    ))
+    // const words = this.props.text.split(' ').map((word ,idx) =>(
+    //   <TranslateWord text={word} key={idx} user={this.props.user}/>
+    // ))
     // console.log(this.props.user)
     // const translate = setCORS("http://cors-anywhere.herokuapp.com/");
     // /*
@@ -27,9 +27,11 @@ class TranslateMessage extends React.Component {
     //   });
     return (
         <div>
-            <ul>
+          <TranslateWord text={this.props.text} user={this.props.user}/>
+
+            {/* <ul>
               {words}
-            </ul>
+            </ul> */}
         </div>
     );
   }
