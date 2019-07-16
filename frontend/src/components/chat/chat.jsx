@@ -104,7 +104,7 @@ class Chat extends React.Component {
         return (
             
             <div className="chat-box">
-                <Display messages={this.state.messages} />
+                <Display className="chat-box-display-messages" messages={this.state.messages} />
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit} className="chat-box-form">
                         <input type="text" 
@@ -120,15 +120,15 @@ class Chat extends React.Component {
                         <div className="chat-box-emoji-menu">
 
                         <button className="emoji-category"
-                                onClick={(e) => this.navigateOne(e)}><i class="fas fa-smile-beam"></i></button>
+                                onClick={(e) => this.navigateOne(e)}><i className="fas fa-smile-beam"></i></button>
                         <button className="emoji-category"
-                                onClick={(e) => this.navigateTwo(e)}><i class="fas fa-user-friends"></i></button>
+                                onClick={(e) => this.navigateTwo(e)}><i className="fas fa-user-friends"></i></button>
                         <button className="emoji-category"
-                                onClick={(e) => this.navigateThree(e)}><i class="fas fa-user-secret"></i></button>
+                                onClick={(e) => this.navigateThree(e)}><i className="fas fa-user-secret"></i></button>
                         <button className="emoji-category"
-                                onClick={(e) => this.navigateFour(e)}><i class="fas fa-dog"></i></button>
+                                onClick={(e) => this.navigateFour(e)}><i className="fas fa-dog"></i></button>
                         <button className="emoji-category"
-                                onClick={(e) => this.navigateFive(e)}><i class="fas fa-utensils"></i></button>
+                                onClick={(e) => this.navigateFive(e)}><i className="fas fa-utensils"></i></button>
                             <br />
                             {this.state.currentEmojiPage === 1 &&
                                 <>

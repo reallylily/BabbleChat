@@ -432,7 +432,7 @@ select {
 
 .chat-box {
   padding: 2rem;
-  background: #e8f1f5;  
+  background: #e8f1f5; 
 }
 
 .chat-box-display-container {
@@ -440,6 +440,7 @@ select {
   height: 80vh; 
   padding: 1rem; 
   border-radius: 15px; 
+  overflow-y: scroll; 
 }
 
 .chat-box-message {
