@@ -16,23 +16,24 @@ class NavBar extends React.Component {
   }
 
   // Selectively render links dependent on whether the user is logged in
+  // <Link to={'/tweets'} className="navbar-header-link">All Tweets</Link>
+  // <Link to={'/new_tweet'} className="navbar-header-link">Write a Tweet</Link>
   getLinks() {
-      if (this.props.loggedIn) {
-        return (
-            <div>
-                <Link to={'/users'} className="navbar-header-link">Find a New Chat Partner</Link>
-            <Link to={'/tweets'} className="navbar-header-link">All Tweets</Link>
-            <Link to={'/profile'} className="navbar-header-link">Profile</Link>
-            <Link to={'/new_tweet'} className="navbar-header-link">Write a Tweet</Link>
-                <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
-            </div>
-        );
+    if (this.props.loggedIn) {
+      return (
+        <div>
+          <Link to={'/users'} className="navbar-header-link">Find a New Chat Partner</Link>
+          <Link to={'/chat'} className="navbar-header-link">Live Chat</Link>
+          <Link to={'/profile'} className="navbar-header-link">Profile</Link>
+          <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
+        </div>
+        )
       } else {
         return (
-            <div>
-                <Link to={'/signup'} className="navbar-signup-button">Signup</Link>
-                <Link to={'/login'} className="navbar-signin-button">Login</Link>
-            </div>
+          <div>
+              <Link to={'/signup'} className="navbar-signup-button">Signup</Link>
+              <Link to={'/login'} className="navbar-signin-button">Login</Link>
+          </div>
         );
       }
   }
