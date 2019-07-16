@@ -1,5 +1,5 @@
 import React from 'react';
-import MessageItem from './message_item';
+// import MessageItem from './message_item';
 import TranslateMessageContainer from '../translate/translate_message_container';
 
 class Display extends React.Component {
@@ -9,8 +9,8 @@ class Display extends React.Component {
     }
 
     render() {
-        const messages = this.messages.map(message=>(
-            <TranslateMessageContainer text={message}/>
+        const messages = this.messages.map((message, idx)=>(
+            <TranslateMessageContainer text={message} key={idx}/>
         ));
 
 

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { setCORS } from "google-translate-api-browser";
+// import { setCORS } from "google-translate-api-browser";
 import TranslateWord from './translate_word'
 
 
@@ -9,7 +9,7 @@ class TranslateMessage extends React.Component {
     const words = this.props.text.split(' ').map((word ,idx) =>(
       <TranslateWord text={word} key={idx} user={this.props.user}/>
     ))
-    console.log(this.props.user)
+    // console.log(this.props.user)
     // const translate = setCORS("http://cors-anywhere.herokuapp.com/");
     // /*
     // // or

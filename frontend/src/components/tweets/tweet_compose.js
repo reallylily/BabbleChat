@@ -1,6 +1,6 @@
 
 import React from 'react';
-import TweetBox from './tweet_box';
+// import TweetBox from './tweet_box';
 import TranslateMessageContainer from '../translate/translate_message_container'
 
 

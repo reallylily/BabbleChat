@@ -19,13 +19,13 @@ class TranslateWord extends React.Component {
         // console.log(this)
         console.log('button clicked')
         let text = this.props.text
-        let to_learn = this.props.user.to_learn
+        // let to_learn = this.props.user.to_learn
         let to_share = this.props.user.to_share
-        this.translate(text, { to: to_learn })
+        this.translate(text, { to: to_share })
           .then(res => {
               this.setState({ bubble : this.bubble = ()=>(<Bubble text={res.text} response={res}/> ) })
             console.log(res.text)
-            console.log(res)
+            // console.log(res)
             // console.log(this)
           })
           .catch(err => {
@@ -34,7 +34,6 @@ class TranslateWord extends React.Component {
     }
 
     render() {
-        console.log(this.props.user)
         /*
         // or
         import translate, { setCORS } from "google-translate-api-browser";

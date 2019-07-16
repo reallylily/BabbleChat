@@ -1,5 +1,5 @@
 // parent component
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import React from 'react';
 import Display from './display';
 import io from "socket.io-client";

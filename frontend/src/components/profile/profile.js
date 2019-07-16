@@ -6,7 +6,7 @@ import Footer from '../footer/footer';
 import ProfileSnippet from './profile_snippet'; 
 import languages from '../languages/languages'
 
-import TweetBox from '../tweets/tweet_box';
+// import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
     constructor(props) {
