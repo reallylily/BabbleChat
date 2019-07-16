@@ -18,11 +18,11 @@ const App = () => (
     <NavBarContainer />
     <Switch>
       
-      <AuthRoute exact path="/" component={Chat} />
-      {/* <AuthRoute exact path="/chat" compoment={Chat} /> */}
+      <AuthRoute exact path="/" component={MainPage} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-
+      
+      <ProtectedRoute exact path="/chat" component={Chat} />
       <ProtectedRoute exact path="/tweets" component={TweetsContainer} />
       <ProtectedRoute exact path="/users" component={UsersIndexContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
