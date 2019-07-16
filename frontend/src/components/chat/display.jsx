@@ -8,11 +8,12 @@ class Display extends React.Component {
     }
 
     render() {
-        const messages = this.messages.map((message, idx) => {
-            return (
-                <MessageItem key={idx} message={message} />
-            );
-        });
+        const messages = this.messages;
+        // .map((message, idx) => {
+        //     return (
+        //         <MessageItem key={idx} message={message} />
+        //     );
+        // });
 
         return (
             <div className="display_container">

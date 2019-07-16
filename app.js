@@ -11,7 +11,7 @@ const passport = require('passport');
 
 const users = require('./routes/api/users'); 
 const tweets = require('./routes/api/tweets'); 
-const chat = require('./routes/chat');
+// const chat = require('./routes/chat');
 
 const User = require('./models/User'); 
 
@@ -66,7 +66,11 @@ server.listen(port, () => {
 const io = socket(server);
 
 io.on('connection', (socket) =>{
-    console.log('made socket connection')
+    console.log('made socket connection');
+
+    socket.on('chat_message', (user_message) => {
+        io.sockets.emit('display_message', user_message)
+    })
 });
 
 //new code end
