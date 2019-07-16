@@ -6,15 +6,17 @@ import Footer from '../footer/footer';
 import ProfileSnippet from './profile_snippet'; 
 import languages from '../languages/languages'
 
+import ProfileEditContainer from './profile_edit_container'
+
 // import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            tweets: []
-        }
+        // this.state = {
+        //     tweets: []
+        // }
     }
     
     componentWillMount() {
@@ -47,6 +49,7 @@ class Profile extends React.Component {
               </div>
             </div>
           </div>}
+          <ProfileEditContainer/>
           <Footer />
           </>
         )

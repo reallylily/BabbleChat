@@ -13,7 +13,7 @@ const languages = {
     ca:"Catalan",
     ceb:"Cebuano",
     zh:"Chinese (Simplified)",
-    zh_TW:"Chinese (Traditional)",
+    "zh-TW":"Chinese (Traditional)",
     co:"Corsican",
     hr:"Croatian",
     cs:"Czech",

@@ -44,12 +44,17 @@ export const login = user => dispatch => (
         localStorage.setItem('jwtToken', token);
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
+        debugger
         dispatch(receiveCurrentUser(decoded))
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
     })
 )
+
+export const edit = user => dispatch => (
+    APIUtil.edit(user).then(res=>dispatch(receiveCurrentUser(res.data)))
+);
 
 // We wrote this one earlier
 export const logout = () => dispatch => {
