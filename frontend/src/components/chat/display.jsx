@@ -14,12 +14,16 @@ class Display extends React.Component {
         //         <MessageItem key={idx} message={message} />
         //     );
         // });
-
+        console.log(messages)
         return (
-            <div className="display_container">
+            <div className="chat-box-display-container">
                 <div className="messages">
                     <ul>
-                        {messages}
+                        {messages.map((message, idx) => 
+                            <li key={idx} className="chat-box-message">
+                                {message}
+                            </li>)
+                        }
                     </ul>
                 </div>
             </div>

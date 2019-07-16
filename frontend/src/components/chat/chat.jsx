@@ -11,7 +11,9 @@ class Chat extends React.Component {
         this.state = {
             endpoint: 'http://localhost:3000',
             messages: [],
-            currentMessage: ''
+            currentMessage: '', 
+            displayEmoji: false, 
+            currentEmojiPage: 1 
         }
         this.socket = io(this.state.endpoint)
     }
@@ -30,9 +32,9 @@ class Chat extends React.Component {
 
     };
 
-    // componentDidUnmount() {
-    //     this.socket.emit('off');
-    // }
+    componentWillUnmount() {
+        this.socket.emit('off');
+    }
 
     update () {
         return e => this.setState({
@@ -49,21 +51,337 @@ class Chat extends React.Component {
         
     }
 
-    render () {
+    triggerEmojiList(e) {
+        e.preventDefault(); 
+        this.setState({
+            displayEmoji: !this.state.displayEmoji
+        })
+    }
 
+    addEmoji(e) {
+        e.preventDefault(); 
+        this.setState({
+            currentMessage: this.state.currentMessage + e.target.innerHTML
+        })
+    }
+
+    navigateOne(e) {
+        e.preventDefault(); 
+        this.setState({
+            currentEmojiPage: 1
+        })
+    }
+
+    navigateTwo(e) {
+        e.preventDefault();
+        this.setState({
+            currentEmojiPage: 2
+        })
+    }
+
+    navigateThree(e) {
+        e.preventDefault();
+        this.setState({
+            currentEmojiPage: 3
+        })
+    }
+
+    navigateFour(e) {
+        e.preventDefault();
+        this.setState({
+            currentEmojiPage: 4
+        })
+    }
+
+    navigateFive(e) {
+        e.preventDefault();
+        this.setState({
+            currentEmojiPage: 5
+        })
+    }
+
+    render () {
         return (
             
-            <div className="chat_box">
+            <div className="chat-box">
                 <Display messages={this.state.messages} />
                 <div className="input_field">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" onChange={this.update()} value={this.state.currentMessage}/>
-                        <input type="submit"/>
-                    </form>              
+                    <form onSubmit={this.handleSubmit} className="chat-box-form">
+                        <input type="text" 
+                            onChange={this.update()} 
+                            value={this.state.currentMessage}
+                            className="chat-box-submit"/>
+                        <button className="chat-box-trigger-emoji-list-button"
+                            onClick={(e) => this.triggerEmojiList(e)}>😀</button>
+                        <input type="submit" />
+                    </form> 
+
+                    {this.state.displayEmoji &&
+                        <div className="chat-box-emoji-menu">
+
+                        <button className="emoji-category"
+                                onClick={(e) => this.navigateOne(e)}><i class="fas fa-smile-beam"></i></button>
+                        <button className="emoji-category"
+                                onClick={(e) => this.navigateTwo(e)}><i class="fas fa-user-friends"></i></button>
+                        <button className="emoji-category"
+                                onClick={(e) => this.navigateThree(e)}><i class="fas fa-user-secret"></i></button>
+                        <button className="emoji-category"
+                                onClick={(e) => this.navigateFour(e)}><i class="fas fa-dog"></i></button>
+                        <button className="emoji-category"
+                                onClick={(e) => this.navigateFive(e)}><i class="fas fa-utensils"></i></button>
+                            <br />
+                            {this.state.currentEmojiPage === 1 &&
+                                <>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😀</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😃</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😂</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤣</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😃</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😃</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😄</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😅</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😆</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😉</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😊</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😋</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😎</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😍</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😘</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😗</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😙</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😚</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙂</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤗</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤩</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤔</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤨</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😐</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😶</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙄</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😏</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😣</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😥</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😮</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤐</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😯</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😪</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😫</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😴</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😌</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😛</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😜</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😝</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😔</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😕</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙃</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😲</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>☹️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙁</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😖</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😞</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😟</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😢</button>
+                                </>
+                            }
+
+                            {
+                                this.state.currentEmojiPage === 2 &&
+                                <>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👶</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👧</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👦</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👵</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👴</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👲</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👳‍♀</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👳‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧕</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧔 </button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👱‍♂️ </button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👱‍♀️ </button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👮‍♀️ </button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👮‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👷‍♀️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👷‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>💂‍♀️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>💂‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🕵️‍♀️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🕵️‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍⚕️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍⚕️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🌾</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🌾</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🍳</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🍳</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🎓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🎓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🎤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🎤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🏫</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🏫</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🏭</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🏭</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍💻</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍💻</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍💼</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍💼</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🔧</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🔧</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🔬</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🔬</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🎨</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🎨</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🚒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🚒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍✈️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍✈️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍🚀</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍🚀</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👩‍⚖️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👨‍⚖️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👰</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤵</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👸</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤴</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤶 </button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🎅</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧙‍♀️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧙‍♂️</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧝‍♀️</button>
+                                </>
+                            }
+
+
+                            {this.state.currentEmojiPage === 3 &&
+                                <>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧥</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👚</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👕</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👖</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👔</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👗</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👙</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👘</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👠</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👡</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👢</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👞</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👟</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧦</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧣</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🎩</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🧢</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🎓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>⛑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👝</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👛</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👜</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>💼</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🎒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>👓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🕶</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🌂</button>
+                                </>
+                            }
+
+
+
+                            {
+                                this.state.currentEmojiPage === 4 &&
+                                <>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐶</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐱</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐭</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐹</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐰</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🦊</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐻</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐼</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐨</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐯</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🦁</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐮</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐷</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐽</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐸</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐵</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙈</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙉</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🙊</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐔</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐧</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐦</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐤</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐣</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🐥</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🦆</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🦅</button>
+                                </>
+                            }
+
+                            {this.state.currentEmojiPage === 5 &&
+                                <>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍏</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍎</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍐</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍊</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍋</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍌</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍉</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍇</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍓</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍈</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍍</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥥</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥝</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍅</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍆</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥑</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥦</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥒</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🌶</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🌽</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥕</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥔</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍠</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🥐</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍞</button>
+                                </>
+                            }
+
+                        </div>}
                 </div>
+                
             </div>
         )
     }
 }
 
 export default connect(null, null)(Chat);
+
+
+
+
+
+
+
+
+
+
