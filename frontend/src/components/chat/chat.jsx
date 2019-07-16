@@ -21,7 +21,7 @@ class Chat extends React.Component {
         // const socket = io(this.state.endpoint);
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
-        });
+        }); 
             this.socket.on('display_message', (message_object) => {
             let new_message_array = this.state.messages;
             new_message_array.push(message_object['message']);
@@ -66,4 +66,4 @@ class Chat extends React.Component {
     }
 }
 
-export default connect(null, null)(Chat);
+export default Chat;
