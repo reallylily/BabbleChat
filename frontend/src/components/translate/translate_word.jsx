@@ -23,7 +23,7 @@ class TranslateWord extends React.Component {
         let to_share = this.props.user.to_share
         this.translate(text, { to: to_learn })
           .then(res => {
-              this.setState({ bubble : this.bubble = ()=>(<Bubble text={res.text}/> ) })
+              this.setState({ bubble : this.bubble = ()=>(<Bubble text={res.text} response={res}/> ) })
             console.log(res.text)
             console.log(res)
             // console.log(this)
