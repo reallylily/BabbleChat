@@ -27,7 +27,7 @@ class TranslateMessage extends React.Component {
     //   });
     return (
         <div>
-          <TranslateWord text={this.props.text} user={this.props.user}/>
+        <TranslateWord text={this.props.text} user={this.props.user}/>
 
             {/* <ul>
               {words}

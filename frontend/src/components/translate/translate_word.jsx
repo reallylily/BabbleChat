@@ -42,7 +42,8 @@ class TranslateWord extends React.Component {
         return (
             <div>
                 { this.bubble ? this.bubble() : null }
-                <button onClick={()=>this.handleClick()}>{this.props.text}</button>
+                <button className="chat-box-message-detail"
+                onClick={()=>this.handleClick()}>{this.props.text}</button>
             </div>
         );
     }

@@ -457,6 +457,15 @@ select {
   border-radius: 10px; 
 }
 
+.chat-box-message-detail {
+  font-size: 1rem;  
+  border: none; 
+  background: #e8f1f5; 
+}
+
+.chat-box-message-detail:hover {
+  background: red; 
+}
 .chat-box-form {
   display: flex; 
 }

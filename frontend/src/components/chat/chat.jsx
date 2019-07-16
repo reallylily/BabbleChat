@@ -111,9 +111,11 @@ class Chat extends React.Component {
                             onChange={this.update()} 
                             value={this.state.currentMessage}
                             className="chat-box-submit"/>
+                        
+                        <button type="submit" style={{display: 'none'}}/>
+
                         <button className="chat-box-trigger-emoji-list-button"
                             onClick={(e) => this.triggerEmojiList(e)}>😀</button>
-                        <input type="submit" />
                     </form> 
 
                     {this.state.displayEmoji &&
