@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 import Display from './display';
 import io from "socket.io-client";
+// import TranslateMessageContainer from '../translate/translate_message_container'
 
 class Chat extends React.Component {
     constructor (props) {
@@ -54,6 +55,8 @@ class Chat extends React.Component {
         return (
             
             <div className="chat_box">
+                {/* <TranslateMessageContainer text={this.state.messages} /> */}
+
                 <Display messages={this.state.messages} />
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit}>

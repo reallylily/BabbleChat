@@ -1,5 +1,6 @@
 import React from 'react';
 import MessageItem from './message_item';
+import TranslateMessageContainer from '../translate/translate_message_container';
 
 class Display extends React.Component {
     constructor(props) {
@@ -8,12 +9,10 @@ class Display extends React.Component {
     }
 
     render() {
-        const messages = this.messages;
-        // .map((message, idx) => {
-        //     return (
-        //         <MessageItem key={idx} message={message} />
-        //     );
-        // });
+        const messages = this.messages.map(message=>(
+            <TranslateMessageContainer text={message}/>
+        ));
+
 
         return (
             <div className="display_container">
