@@ -20,11 +20,11 @@ class NavBar extends React.Component {
       if (this.props.loggedIn) {
         return (
             <div>
-                <Link to={'/users'}>Find a New Chat Partner</Link>
-                <Link to={'/tweets'}>All Tweets</Link>
-                <Link to={'/profile'}>Profile</Link>
-                <Link to={'/new_tweet'}>Write a Tweet</Link>
-                <button onClick={this.logoutUser}>Logout</button>
+                <Link to={'/users'} className="navbar-header-link">Find a New Chat Partner</Link>
+            <Link to={'/tweets'} className="navbar-header-link">All Tweets</Link>
+            <Link to={'/profile'} className="navbar-header-link">Profile</Link>
+            <Link to={'/new_tweet'} className="navbar-header-link">Write a Tweet</Link>
+                <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
             </div>
         );
       } else {
