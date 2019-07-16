@@ -111,4 +111,21 @@ router.post('/login', (req, res) => {
         })
 })
 
+router.patch("/current", 
+    passport.authenticate("jwt", { session: false }),
+    (req, res)=>{
+        // console.log(req.user) 
+        // console.log(req.body.to_learn)
+        // console.log(req.body.to_share)
+        req.user.to_learn = req.body.to_learn
+        req.user.to_share = req.body.to_share
+        req.user.save()
+            .then((user) => res.json(user))
+            .catch(err => console.log(err)); 
+        // console.log(req.user) 
+    }
+    
+
+)
+
 module.exports = router; 
