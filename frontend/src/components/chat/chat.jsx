@@ -4,6 +4,7 @@ import React from 'react';
 import Display from './display';
 import io from "socket.io-client";
 import Footer from '../footer/footer'; 
+import languages from '../languages/languages';
 
 class Chat extends React.Component {
     constructor (props) {
@@ -19,30 +20,73 @@ class Chat extends React.Component {
             displayGifs: false, 
             currentEmojiPage: 1, 
             gifs: [], 
-            giphySearch: 'chicken'   
+            giphySearch: 'chicken',   
+            partner_handle: '',
+            partner_learn_lang: '',
+            partner_share_lang: '',
         }
         // this.socket = io(this.state.endpoint);
-        this.socket = io()
+        this.socket = io();
 
         this.setEmojiMenuRef = this.setEmojiMenuRef.bind(this); 
         
         this.handleClickOutsideEmojiMenu = this.handleClickOutsideEmojiMenu.bind(this); 
     }
 
+
+    componentWillMount() {
+        this.socket.on('connect', () => {
+            console.log('Chat component is connected');
+        });
+
+        this.socket.emit('join_room', this.props.roomId);
+    }
+
     componentDidMount() {
-        // const socket = io(this.state.endpoint);
-        let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`; 
+        
+        let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
         fetch(giphyURL)
             .then(res => res.json())
             .then(gifs => this.setState({
                 gifs: gifs.data.map(gif => gif.images.downsized.url)
             }))
 
-        this.socket.on('connect', () => {
-            console.log('Chat component is connected');
-        }); 
+        this.socket.on('request_partner_data', () => {
+            this.socket.emit('send_own_user_data', {
+                user_handle: this.props.currentUser.handle,
+                learning_language: languages[this.props.currentUser.to_learn],
+                sharing_language: languages[this.props.currentUser.to_share],
+                roomId: this.props.roomId
+            })
+        });
+        
+        // const socket = io(this.state.endpoint);
+        // this.socket.on('connect', () => {
+        //     console.log('Chat component is connected');
+        //     this.socket.emit('send_own_user_data', {
+        //         user_handle: this.props.currentUser.handle,
+        //         learning_language: languages[this.props.currentUser.to_learn],
+        //         sharing_language: languages[this.props.currentUser.to_share],
+        //         roomId: this.props.roomId
+        //     })
+        // }); 
 
-        this.socket.emit('join_room', this.props.roomId);
+        // this.socket.emit('join_room', this.props.roomId);
+
+        this.socket.on('chat_partner_data', (partner_data) => {
+            console.log(partner_data);
+            const partner_handle = partner_data['other_user_handle'];
+            const partner_learn_lang = partner_data['other_learn_lang'];
+            const partner_share_lang = partner_data['other_share_lang'];
+            if (partner_handle !== this.props.currentUser.handle) {
+                this.setState({
+                    partner_handle: partner_handle,
+                    partner_learn_lang: partner_learn_lang,
+                    partner_share_lang: partner_share_lang,
+                });
+            }
+                // console.log(this.state);
+        });
 
         this.socket.on('display_message', (message_object) => {
             console.log('message received');
@@ -82,6 +126,7 @@ class Chat extends React.Component {
     }
 
     handleSubmit (e) {
+        console.log(this.state);
         e.preventDefault();
         if (this.state.currentMessage !== '') {
             this.socket.emit('chat_message', {
