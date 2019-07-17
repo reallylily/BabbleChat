@@ -112,8 +112,8 @@ class ProfileEdit extends React.Component {
 
     return (
       <>
-        {editLanguagesButton()}
         { this.state.displayEditForm ? editLanguagesForm() : null }
+        {editLanguagesButton()}
       </>
     );
   }
