@@ -76,15 +76,13 @@ function onConnect(socket) {
         });
     } 
     // console.log(socket.id);
-    // socket.on('chat_message', (user_message) => {
-    //     io.sockets.emit('display_message', user_message)
-
+    
     socket.on('request_room', (room_ids) => {
         const possible_room_ids = Object.keys(possible_rooms);
         const users_in_possible_rooms = Object.values(possible_rooms);
 
         if (possible_room_ids.includes(room_ids[0])) {
-            
+
             console.log('found first room');
             socket.emit('possible_room', room_ids[0] );
             socket.emit('verified_room', room_ids[0] );
@@ -115,10 +113,32 @@ function onConnect(socket) {
         
     });
 
+    socket.on('join_room', (room_id) => {
+        let rooms = Object.keys(socket.rooms);
+        socket.leave(rooms[0]);
+        console.log(room_id);
+        socket.join(room_id, () => {
+            let rooms = Object.keys(socket.rooms);
+            console.log(`joining these rooms: ${rooms}`);}
+        )
+    })
 
+    socket.on('chat_message', (message_object) => {
+        console.log(message_object);
+        console.log(message_object['roomId']);
+        const room_id_of_message = message_object['roomId'];
+        const message_body = message_object['message'];
+        const author_id = message_object['userId'];
+
+        io.sockets.in(room_id_of_message).emit('display_message', {
+            message: message_body,
+            userId: author_id
+        })
+    })
 
     socket.on('off', () => {
-        remove_user_from_possible_rooms(socket.id)
+        console.log('chat socket is being turned off');
+        remove_user_from_possible_rooms(socket.id);
         socket.disconnect();
     })
 

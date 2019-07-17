@@ -42,6 +42,7 @@ class UsersIndex extends React.Component {
       if (this.possibleRoom === room_id) {
         console.log('successfully matched to right room');
         this.props.saveRoomId(room_id);
+        this.props.history.push('/chat')
       }
     });
 

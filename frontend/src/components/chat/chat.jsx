@@ -25,16 +25,24 @@ class Chat extends React.Component {
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
         }); 
-        
+
+        this.socket.emit('join_room', this.props.roomId);
+
         this.socket.on('display_message', (message_object) => {
+            console.log('message received');
             let new_message_array = this.state.messages;
             new_message_array.push(message_object['message']);
             this.setState({ messages: new_message_array, currentMessage: "" });
+            console.log(this.state.messages);
         });
 
     };
 
+
+
     componentWillUnmount() {
+        console.log('chat component unmounting');
+        this.props.clearRoomId();
         this.socket.emit('off');
     }
 
@@ -48,7 +56,9 @@ class Chat extends React.Component {
     handleSubmit (e) {
         e.preventDefault();
         this.socket.emit('chat_message', {
-            message: this.state.currentMessage
+            message: this.state.currentMessage,
+            roomId: this.props.roomId,
+            userId: this.props.currentUserId
         });
         
     }

@@ -13,7 +13,7 @@ import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
 import TweetComposeContainer from './tweets/tweet_compose_container';
-import Chat from './chat/chat';
+import ChatContainer from './chat/chat_container';
 
 const App = () => (
   <div>
@@ -24,7 +24,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       
-      <ProtectedRoute exact path="/chat" component={Chat} />
+      <ProtectedRoute exact path="/chat" component={ChatContainer} />
       <ProtectedRoute exact path="/tweets" component={TweetsContainer} />
       <ProtectedRoute exact path="/users" component={UsersIndexContainer} />
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />

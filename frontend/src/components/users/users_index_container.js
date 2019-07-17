@@ -5,10 +5,11 @@ import { saveRoomId } from '../../actions/session_actions';
 
 import UsersIndex from './users_index';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     users: state.entities.users.all,
-    currentUserId: state.session.user.id
+    currentUserId: state.session.user.id,
+    history: ownProps.history,
     // users: Object.values(state.entities.users.all)
   };
 };
