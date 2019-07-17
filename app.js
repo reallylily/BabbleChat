@@ -11,6 +11,7 @@ const passport = require('passport');
 
 const users = require('./routes/api/users'); 
 const tweets = require('./routes/api/tweets'); 
+const path = require('path');
 // const chat = require('./routes/chat');
 
 // const User = require('./models/User'); 
@@ -18,6 +19,14 @@ const tweets = require('./routes/api/tweets');
 //new code
 const socket = require('socket.io');
 //new code end
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+  }
+
 
 mongoose.connect(db, { useNewUrlParser: true })
     .then(() => console.log('Connected to mongoDB'))
