@@ -8,10 +8,11 @@ const UsersIndexItem = ({ user, sameLang }) => (
     <div className={sameLang ? "chat-users-item2" : "chat-users-item"}>
 
         <div className="chat-users-name">
-            <img height="55px" 
+            <img height="55px"
+                width="55px" 
                 src={user.pic}
                 className="chat-users-profile-image" />
-            {user.handle} 
+            <span className="chat-users-profile-handle">{user.handle} </span>
         </div>
         <div className="chat-users-right">
             <div className="chat-users-language-pref">
@@ -19,7 +20,7 @@ const UsersIndexItem = ({ user, sameLang }) => (
                 <div className="chat-users-speaking">Speaks <div className="chat-users-tags">{languages[user.to_share]}</div></div>
             </div>
 
-            <button className="chat-users-start-convo-button">Talk To Me</button>
+            <button className={sameLang ? "chat-users-start-convo-button" : "chat-users-start-convo-button2"} >Talk To Me</button>
         </div>
     </div>
   

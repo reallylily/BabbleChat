@@ -49,7 +49,7 @@ class Profile extends React.Component {
           {this.props.currentUser &&
           <div className="profile-page">
             <div className="profile-card">
-              <img width="300px" src={this.props.currentUser.pic} />
+              <img style={{borderRadius: '15px'}} width="300px" height="300px" src={this.props.currentUser.pic} />
               <div className="profile-description">
                 <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
