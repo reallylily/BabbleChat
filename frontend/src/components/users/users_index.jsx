@@ -33,8 +33,9 @@ class UsersIndex extends React.Component {
         const users = []
         this.state.users.forEach(user => {
           user.to_share === this.props.currentUser.to_learn ? 
-            same_lang_users.unshift(<UsersIndexItem key={user._id} user={user} sameLang={true}/>) :
-            users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} />)
+            same_lang_users.push(<UsersIndexItem key={user._id} user={user} sameLang={true}/>) :
+            console.log(user.email !== this.props.currentUser.email)
+            if (user.email !== this.props.currentUser.email) users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} />)
         })
       return (
         <>
