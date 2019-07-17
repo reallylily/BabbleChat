@@ -120,16 +120,31 @@ table {
 }
 
 .navbar-logout-button {
-    color: #005691; 
+    color: white; 
     border: 2px solid #005691; 
-    border-radius: 15px; 
     font-size: 1.2rem; 
     font-family: 'Raleway', sans-serif;
     padding: 0.35rem; 
     padding-left: 1.3rem; 
     padding-right: 1.3rem; 
     font-weight: bold; 
-    background-color: white; 
+    background: #f65026; 
+    margin-right: 1rem; 
+    margin-left: 1rem; 
+    border-radius: 5px; 
+}
+
+.navbar-logout-button:hover {
+    background:#ed6e4e; 
+    border: none; 
+    cursor: pointer; 
+    border: 2px solid #005691; 
+    font-size: 1.2rem; 
+    font-family: 'Raleway', sans-serif;
+    padding: 0.35rem; 
+    padding-left: 1.3rem; 
+    padding-right: 1.3rem; 
+    font-weight: bold; 
 }
 
 
@@ -188,6 +203,37 @@ a {
   width: 100%; 
   margin-top: 1000px; 
   box-sizing: border-box; 
+}
+
+.login-form-selector2 {
+  background: #e8f1f5; 
+  color: slategray; 
+  outline: none; 
+  border: none; 
+  font-size: 1rem; 
+  padding-left: 1rem; 
+  padding-right: 1rem; 
+  padding-top: 0.5rem; 
+  padding-bottom: 0.5rem; 
+  margin-bottom: 0.5rem; 
+  font-family: 'Raleway', sans-serif; 
+  border-radius: 15px; 
+}
+
+.login-form-selector2:hover {
+  cursor: pointer; 
+  background: #005691; 
+  color: white; 
+  outline: none; 
+  border: none; 
+  font-size: 1rem; 
+  padding-left: 1rem; 
+  padding-right: 1rem; 
+  padding-top: 0.5rem; 
+  padding-bottom: 0.5rem; 
+  margin-bottom: 0.5rem; 
+  font-family: 'Raleway', sans-serif; 
+  border-radius: 15px; 
 }
 
 .login-form-container2 {
@@ -429,6 +475,8 @@ select {
   padding: 3rem; 
 }
 
+
+
 .chat-users-item {
   font-family: 'Raleway', sans-serif; 
   display: flex; 
@@ -439,12 +487,59 @@ select {
   background: #005691; 
   color: white; 
   border-radius: 15px; 
-  padding: 1rem; 
+  padding: 0.5rem; 
+}
+
+.chat-users-item2 {
+  font-family: 'Raleway', sans-serif; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 0.5rem; 
+  border: 1px solid #f65026; 
+  background: #f65026; 
+  color: white; 
+  border-radius: 15px; 
+  padding: 0.5rem; 
+}
+
+.chat-users-item2:hover {
+  font-family: 'Raleway', sans-serif; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 0.5rem; 
+  border: 1px solid #ed6e4e; 
+  background: #ed6e4e; 
+  color: white; 
+  border-radius: 15px; 
+  padding: 0.5rem; 
+  cursor: pointer; 
+}
+
+.chat-users-active-language {
+  color: #ed6e4e; 
+  font-weight: bold; 
+}
+
+.chat-users-digit-default {
+  color: #005691; 
+  font-weight: bold; 
+}
+
+.chat-users-digit {
+  color: #ed6e4e; 
+  font-weight: bold; 
 }
 
 .chat-users-item:hover {
   background: #1a85cc; 
   cursor: pointer; 
+}
+
+.chat-users-profile-image {
+  margin-right: 1rem; 
+  border-radius: 5px; 
 }
 
 .chat-users-right {
@@ -514,11 +609,12 @@ select {
 .chat-box {
   padding: 2rem;
   background: #e8f1f5; 
+  margin-bottom: 2rem; 
 }
 
 .chat-box-display-container {
   background: white; 
-  height: 80vh; 
+  height: 65vh; 
   padding: 1rem; 
   border-radius: 15px; 
   overflow-y: scroll; 

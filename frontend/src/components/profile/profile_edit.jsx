@@ -57,7 +57,7 @@ class ProfileEdit extends React.Component {
                 <select name="to_learn"
                   defaultValue={this.state.to_learn}
                   onChange={this.update('to_learn')}
-                  className="login-form-selector">
+                  className="login-form-selector2">
                   {languages()}
                 </select>
             </label>
@@ -67,7 +67,7 @@ class ProfileEdit extends React.Component {
                 <select name="to_share"
                   defaultValue={this.state.to_share}
                   onChange={this.update('to_share')}
-                  className="login-form-selector">
+                  className="login-form-selector2">
                   {languages()}
                 </select>
             </label>

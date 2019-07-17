@@ -33,15 +33,14 @@ class UsersIndex extends React.Component {
         const users = []
         this.state.users.forEach(user => {
           user.to_share === this.props.currentUser.to_learn ? 
-            same_lang_users.unshift(<UsersIndexItem key={user._id} user={user} />) :
-            users.push(<UsersIndexItem key={user._id} user={user} />)
+            same_lang_users.unshift(<UsersIndexItem key={user._id} user={user} sameLang={true}/>) :
+            users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} />)
         })
       return (
         <>
         <div className="chat-users-page">
-            <h2 className="chat-users-number">{same_lang_users.length + users.length} <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> online</h2>
-            <h2 className="chat-users-number">{same_lang_users.length} <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> who speak {languages[this.props.currentUser.to_learn]} online</h2>
-          
+            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> online</h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>BabbleBuddies</span> who speak <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
           <ul>
               {same_lang_users}
           </ul>

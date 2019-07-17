@@ -3,6 +3,7 @@
 import React from 'react';
 import Display from './display';
 import io from "socket.io-client";
+import Footer from '../footer/footer'; 
 
 class Chat extends React.Component {
     constructor (props) {
@@ -120,6 +121,7 @@ class Chat extends React.Component {
 
     render () {
         return (
+            <>
             
             <div className="chat-box">
                 <Display className="chat-box-display-messages" 
@@ -141,7 +143,7 @@ class Chat extends React.Component {
 
                     <div></div>
                     {this.state.displayEmoji &&
-                        <div className="chat-box-emoji-menu">
+                        <div className="chat-box-emoji-menu" ref={this.setEmojiMenuRef}>
 
                         <div className="emoji-category-banner">
                         <button className="emoji-category"
@@ -158,7 +160,7 @@ class Chat extends React.Component {
 
                             <br />
 
-                            <div className="emoji-items-list" ref={this.setEmojiMenuRef}>
+                            <div className="emoji-items-list">
                             {this.state.currentEmojiPage === 1 &&
                                 <>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😀</button>
@@ -400,6 +402,8 @@ class Chat extends React.Component {
                 </div>
                 
             </div>
+                <Footer />
+            </>
         )
     }
 }
