@@ -14,10 +14,14 @@ class SignupForm extends React.Component {
       password2: '',
       to_learn: 'en',
       to_share: 'en',
-      errors: {}
+      errors: {}, 
+      question1: false, 
+      question2: false      
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggleHelp1 = this.toggleHelp1.bind(this); 
+    this.toggleHelp2 = this.toggleHelp2.bind(this); 
     this.clearedErrors = false;
   }
 
@@ -33,10 +37,31 @@ class SignupForm extends React.Component {
     this.setState({errors: nextProps.errors})
   }
 
+  toggleHelp1(e) {
+    this.setState({
+      question1: !this.state.question1, 
+      question2: false 
+    })
+  }
+
+  toggleHelp2(e) {
+    this.setState({
+      question1: false, 
+      question2: !this.state.question2 
+    })
+  }
+
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
+  }
+
+  learnDone(e) {
+    this.setState({
+      learn_done: true 
+    })
   }
 
   handleSubmit(e) {
@@ -196,53 +221,100 @@ class SignupForm extends React.Component {
                 It's free and takes less than a minute
             </div>
             <br/>
+              {this.state.email.length === 0 ? 
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
                 className="login-form-text-input"
               />
+              : 
+                <input type="text"
+                  value={this.state.email}
+                  onChange={this.update('email')}
+                  placeholder="Email"
+                  className="login-form-text-input-done"
+                />
+              }
             <br/>
-              <input type="text"
+              {this.state.handle.length === 0 ? <input type="text"
                 value={this.state.handle}
                 onChange={this.update('handle')}
-                placeholder="Handle"
+                placeholder="Username"
                 className="login-form-text-input"
               />
+              : 
+                <input type="text"
+                  value={this.state.handle}
+                  onChange={this.update('handle')}
+                  placeholder="Username"
+                  className="login-form-text-input-done"
+                />
+              }
             <br/>
-              <input type="password"
+              {this.state.password.length === 0 ? <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
                 className="login-form-text-input"
               />
+              : 
+                <input type="password"
+                  value={this.state.password}
+                  onChange={this.update('password')}
+                  placeholder="Password"
+                  className="login-form-text-input-done"
+                />
+              }
             <br/>
-              <input type="password"
+              {this.state.password2.length === 0 ? <input type="password"
                 value={this.state.password2}
                 onChange={this.update('password2')}
                 placeholder="Confirm Password"
                 className="login-form-text-input"
               />
+              : 
+                <input type="password"
+                  value={this.state.password2}
+                  onChange={this.update('password2')}
+                  placeholder="Confirm Password"
+                  className="login-form-text-input-done"
+                />
+              }
             <br/>
 
+
+            <div className="languages">Languages</div>
             <label className="login-form-text">
-                <span className="login-form-language">I want to learn</span>
+                {this.state.question2 ? <div className="popup-2">Pick a primary language to learn. You will be matched with a chat partner who is has at least basic conversational fluency in that language. </div> : null}
+
+                <div className="login-form-language">
+                  <div>I want to <span className="learn-emphasis">learn</span></div>
+                  <div onClick={this.toggleHelp2}><i className="fas fa-question need-help-learn"></i></div>
+                </div>
                 <select name="to_learn"
                   onChange={this.update('to_learn')}
-                  className="login-form-selector">
+                  className="login-form-selector-language">
                   {languages()}
                 </select>
             </label>
             <br/>
             <label className="login-form-text">
-                <span className="login-form-language">I want to share</span>
+                
+                {this.state.question1 ? <div className="popup-1">Pick a language to share with your partner. You don't necessarily need to be fluent, but you should have conversational fluency. </div>
+                : null}
+
+                <div className="login-form-language">
+                  <div>I want to <span className="share-emphasis">share</span></div>
+                  <div onClick={this.toggleHelp1}><i className="fas fa-question need-help-share"></i></div>
+                </div>
                 <select name="to_share"
                   onChange={this.update('to_share')}
-                  className="login-form-selector">
+                  className="login-form-selector-language">
                   {languages()}
                 </select>
             </label>
-            <input type="submit" value="Submit" className="login-form-submit" />
+            <input type="submit" value="Submit" className="signup-form-submit" />
             {this.renderErrors()}
 
             <div className="login-links">

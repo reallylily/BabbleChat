@@ -9,12 +9,17 @@ class Chat extends React.Component {
     constructor (props) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this); 
+        this.handleSubmitImage = this.handleSubmitImage.bind(this); 
+
         this.state = {
             endpoint: 'http://localhost:3000',
             messages: [],
             currentMessage: '', 
             displayEmoji: false, 
-            currentEmojiPage: 1 
+            displayGifs: false, 
+            currentEmojiPage: 1, 
+            gifs: [], 
+            giphySearch: 'chicken'   
         }
         this.socket = io(this.state.endpoint);
 
@@ -25,6 +30,13 @@ class Chat extends React.Component {
 
     componentDidMount() {
         // const socket = io(this.state.endpoint);
+        let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`; 
+        fetch(giphyURL)
+            .then(res => res.json())
+            .then(gifs => this.setState({
+                gifs: gifs.data.map(gif => gif.images.downsized.url)
+            }))
+
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
         }); 
@@ -70,10 +82,22 @@ class Chat extends React.Component {
         }   
     }
 
+    handleSubmitImage(e) {
+        console.log('hello')
+        console.log(e.currentTarget.value)
+    }
+
     triggerEmojiList(e) {
         e.preventDefault(); 
         this.setState({
             displayEmoji: !this.state.displayEmoji
+        })
+    }
+
+    triggerGifList(e) {
+        e.preventDefault(); 
+        this.setState({
+            displayGifs: !this.state.displayGifs
         })
     }
 
@@ -82,6 +106,34 @@ class Chat extends React.Component {
         this.setState({
             currentMessage: this.state.currentMessage + e.target.innerHTML
         })
+    }
+
+    // addGif(e) {
+    //     e.preventDefault(); 
+    //     this.setState({
+    //         currentMessage: this.state.currentMessage + e.target.innerHTML
+    //     })
+    // }
+
+    clearGiphySearch(e) {
+        e.preventDefault(); 
+        this.setState({
+            giphySearch: ''
+        })
+    }
+
+    updateGiphySearch(e) {
+        e.preventDefault(); 
+        this.setState({
+            giphySearch: e.target.value 
+        })
+
+        let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
+        fetch(giphyURL)
+            .then(res => res.json())
+            .then(gifs => this.setState({
+                gifs: gifs.data.map(gif => gif.images.downsized.url)
+            }))
     }
 
     navigateOne(e) {
@@ -120,10 +172,13 @@ class Chat extends React.Component {
     }
 
     render () {
+        console.log(this.state.gifs)
+        console.log(this.state.giphySearch)
         return (
             <>
             
             <div className="chat-box">
+
                 <Display className="chat-box-display-messages" 
                         messages={this.state.messages} />
 
@@ -136,10 +191,35 @@ class Chat extends React.Component {
                         
                         <button type="submit" style={{display: 'none'}}/>
 
+                            <button className="chat-box-trigger-emoji-list-button"
+                                onClick={(e) => this.triggerGifList(e)}>
+                                <i class="fas fa-video"></i>
+                        </button>
+
                         <button className="chat-box-trigger-emoji-list-button"
-                            onClick={(e) => this.triggerEmojiList(e)}><i class="far fa-smile"></i>
+                            onClick={(e) => this.triggerEmojiList(e)}>
+                                <i className="far fa-smile"></i>
                         </button>
                     </form> 
+                   
+                        {this.state.displayGifs && this.state.gifs && 
+                        <div className="chat-box-gif-menu">
+
+                            <input type="text" 
+                                className="giphy-search-bar"
+                                onClick={(e) => this.clearGiphySearch(e)}
+                                onChange={(e) => this.updateGiphySearch(e)} 
+                                value={this.state.giphySearch} />
+          
+
+
+                            {this.state.gifs.map((gif, idx) =>
+                            
+                            <img key={idx} src={gif} width="50px" height="50px"
+                                onClick={this.handleSubmitImage}>
+                            </img>)}
+                        </div> 
+                        }
 
                     <div></div>
                     {this.state.displayEmoji &&

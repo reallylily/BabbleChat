@@ -41,8 +41,8 @@ class UsersIndex extends React.Component {
       return (
         <>
         <div className="chat-users-page">
-            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> online</h2>
-            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>BabbleBuddies</span> who speak <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> online</h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
           <ul>
               {same_lang_users}
           </ul>
