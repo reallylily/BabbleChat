@@ -80,36 +80,37 @@ function onConnect(socket) {
     socket.on('request_room', (room_ids) => {
         const possible_room_ids = Object.keys(possible_rooms);
         const users_in_possible_rooms = Object.values(possible_rooms);
+        const requester_id = socket.id;
 
-        if (possible_room_ids.includes(room_ids[0])) {
+        if (possible_room_ids.includes(room_ids[0]) && (possible_rooms[room_ids[0]] !== requester_id)) {
+                
+                console.log('found first room');
+                socket.emit('possible_room', room_ids[0] );
+                socket.emit('verified_room', room_ids[0] );
+                const other_socketid = possible_rooms[room_ids[0]];
+                io.to(other_socketid).emit('verified_room', room_ids[0]);
+                remove_user_from_possible_rooms(other_socketid);
+                console.log(possible_rooms);
+                
+        } else if (possible_room_ids.includes(room_ids[1]) && (possible_rooms[room_ids[1]] !== requester_id)) {
 
-            console.log('found first room');
-            socket.emit('possible_room', room_ids[0] );
-            socket.emit('verified_room', room_ids[0] );
-            const other_socketid = possible_rooms[room_ids[0]];
-            io.to(other_socketid).emit('verified_room', room_ids[0]);
-            remove_user_from_possible_rooms(other_socketid);
-            console.log(possible_rooms);
+                console.log('found second room');
+                socket.emit('possible_room', room_ids[1]);
+                socket.emit('verified_room', room_ids[1]);
+                const other_socketid = possible_rooms[room_ids[1]];
+                io.to(other_socketid).emit('verified_room', room_ids[1]);
+                remove_user_from_possible_rooms(other_socketid);
+                console.log(possible_rooms);
 
-        } else if (possible_room_ids.includes(room_ids[1])) {
+            } else {
 
-            console.log('found second room');
-            socket.emit('possible_room', room_ids[1]);
-            socket.emit('verified_room', room_ids[1]);
-            const other_socketid = possible_rooms[room_ids[1]];
-            io.to(other_socketid).emit('verified_room', room_ids[1]);
-            remove_user_from_possible_rooms(other_socketid);
-            console.log(possible_rooms);
+                remove_user_from_possible_rooms(socket.id);
+                possible_rooms[room_ids[0]] = socket.id;
+                console.log(socket.id);
+                console.log(possible_rooms);
+                socket.emit('possible_room', room_ids[0] );
 
-        } else {
-
-            remove_user_from_possible_rooms(socket.id);
-            possible_rooms[room_ids[0]] = socket.id;
-            console.log(socket.id);
-            console.log(possible_rooms);
-            socket.emit('possible_room', room_ids[0] );
-
-        }
+            }
         
     });
 
