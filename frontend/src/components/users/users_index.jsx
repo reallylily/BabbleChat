@@ -72,15 +72,17 @@ class UsersIndex extends React.Component {
         const same_lang_users = []
         const users = []
         this.state.users.forEach(user => {
-          user.to_share === this.props.currentUser.to_learn ? 
-            same_lang_users.unshift(<UsersIndexItem key={user._id} user={user} sameLang={true} requestRoom={this.requestRoom}/>) :
-            users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} requestRoom={this.requestRoom} />)
+          if (user.to_share === this.props.currentUser.to_learn) {
+            same_lang_users.push(<UsersIndexItem key={user._id} user={user} sameLang={true}/>)
+          } else {
+            if (user.email !== this.props.currentUser.email) users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} />)
+          }
         })
       return (
         <>
         <div className="chat-users-page">
-            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{fontWeight: 'bold'}}>BabbleBuddies</span> online</h2>
-            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>BabbleBuddies</span> who speak <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> online</h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
           <ul>
               {same_lang_users}
           </ul>

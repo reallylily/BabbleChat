@@ -56,6 +56,8 @@ class NavBar extends React.Component {
             onClick={() => this.handleClick2()}>Live Chat</Link>
           <Link to={'/profile'} className={this.state.navbar3 ? "navbar-header-link-hover" : "navbar-header-link"}
             onClick={() => this.handleClick3()}>Profile</Link>
+           
+          <span className="navbar-username">{this.props.currentUser.handle}  <img style={{transform: 'translateY(5px)', borderRadius: '5px'}} width="35px" height="35px" src={this.props.currentUser.pic} /></span>
           <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
         </div>
         )
@@ -70,6 +72,7 @@ class NavBar extends React.Component {
   }
 
   render() {
+    console.log(this.props.currentUser)
       return (
         <div className="navbar">
             <h1 className="navbar-title">BabbleChat</h1>
