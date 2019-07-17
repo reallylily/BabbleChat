@@ -10,6 +10,8 @@ class ProfileEdit extends React.Component {
     super(props);
     this.state = this.props.currentUser;
 
+    this.state.displayEditForm = false;
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
   }
@@ -27,7 +29,16 @@ class ProfileEdit extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.edit(this.state).then((user)=>{
+        this.setState({displayEditForm: false})
         this.setState(user)
+    })
+  }
+
+
+  renderEdit(e) {
+    e.preventDefault(); 
+    this.setState({
+      displayEditForm: !this.state.displayEditForm
     })
   }
 
@@ -45,7 +56,27 @@ class ProfileEdit extends React.Component {
         )
     }
 
-    return (
+
+
+    const editLanguagesButton = () => {
+      return (
+        <>
+        {this.state.displayEditForm ? 
+          <button onClick={(e) => this.renderEdit(e)}
+            className="edit-languages-button">
+            X 
+          </button>
+          :
+          <button onClick={(e) => this.renderEdit(e)}
+              className="edit-languages-button">
+              Change Language Preferences
+          </button>
+          }
+        </>
+      )
+    }
+
+    const editLanguagesForm = () => (
       <>
         <div className="login-form-container2">
         <h1 className="login-form-title">Want to change your languages?</h1> 
@@ -75,8 +106,14 @@ class ProfileEdit extends React.Component {
 
           </div>
         </form>
-      </div>
-      <Footer />
+        </div>
+      </>
+    )
+
+    return (
+      <>
+        {editLanguagesButton()}
+        { this.state.displayEditForm ? editLanguagesForm() : null }
       </>
     );
   }

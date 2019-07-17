@@ -13,9 +13,6 @@ import ProfileEditContainer from './profile_edit_container'
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-          displayEditForm: false 
-        }
         // this.state = {
         //     tweets: []
         // }
@@ -43,7 +40,6 @@ class Profile extends React.Component {
     }
     
     render() {
-      // console.log(this.props.currentUser)
         return (
           <>
           {this.props.currentUser &&
@@ -55,26 +51,10 @@ class Profile extends React.Component {
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
                 <ProfileSnippet name="Learning" value={languages[this.props.currentUser.to_learn]} />
                 <ProfileSnippet name="Speaks" value={languages[this.props.currentUser.to_share]} />
-                {this.state.displayEditForm ? 
-                <button onClick={(e) => this.renderEdit(e)}
-                  className="edit-languages-button">
-                  Nevermind 
-                </button>
-                :
-                <button onClick={(e) => this.renderEdit(e)}
-                    className="edit-languages-button">
-                    Change Language Preferences
-                </button>
-                }
               </div>
             </div>
-                            {this.state.displayEditForm ?
-                  <ProfileEditContainer />
-                  :
-                  null}
+            <ProfileEditContainer />
           </div>}
-          
-
           <Footer />
           </>
         )
