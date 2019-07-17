@@ -5,7 +5,8 @@ import UsersIndex from './users_index';
 
 const mapStateToProps = (state) => {
   return {
-    users: state.entities.users.all
+    users: state.entities.users.all,
+    currentUser: state.session.user,
     // users: Object.values(state.entities.users.all)
   };
 };
