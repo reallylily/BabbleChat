@@ -8,8 +8,8 @@ const UsersIndexItem = ({ user, sameLang }) => (
     <div className={sameLang ? "chat-users-item2" : "chat-users-item"}>
 
         <div className="chat-users-name">
-            <img width="55px" 
-                src="https://react.semantic-ui.com/images/avatar/large/matthew.png" 
+            <img height="55px" 
+                src={user.pic}
                 className="chat-users-profile-image" />
             {user.handle} 
         </div>
