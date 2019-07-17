@@ -11,13 +11,6 @@ import ProfileEditContainer from './profile_edit_container'
 // import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
-    constructor(props) {
-        super(props);
-
-        // this.state = {
-        //     tweets: []
-        // }
-    }
     
     componentWillMount() {
         // console.log(this.props.currentUser.id)
@@ -40,7 +33,7 @@ class Profile extends React.Component {
           {this.props.currentUser &&
           <div className="profile-page">
             <div className="profile-card">
-              <img width="200px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
+              <img alt='myface' width="200px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
               <div className="profile-description">
                 <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />

@@ -25,8 +25,7 @@ class TranslateWord extends React.Component {
                 .then(res => {
                     this.setState({ bubble: this.state.bubble = () => (<Bubble text={res.text} response={res} />) })
                     console.log(res.text)
-                    // console.log(res)
-                    // console.log(this)
+
                 })
                 .catch(err => {
                     console.error(err);
@@ -38,10 +37,6 @@ class TranslateWord extends React.Component {
                 bubble: null
             })
         }
-        // e.preventDefault();
-        // this.translate = setCORS("http://cors-anywhere.herokuapp.com/");
-        // console.log(this)
-
     }
 
     render() {

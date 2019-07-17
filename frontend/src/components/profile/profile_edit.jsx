@@ -2,7 +2,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Footer from '../footer/footer'; 
-import { Link } from 'react-router-dom'; 
+// import { Link } from 'react-router-dom'; 
 import langs from '../languages/languages';
 
 class ProfileEdit extends React.Component {
@@ -32,23 +32,18 @@ class ProfileEdit extends React.Component {
   }
 
   render() {
-    const languagesLearn = () => {
+    const languages = () => {
         const options = []
         for (var key in langs) {
-            if (langs.hasOwnProperty(key)) options.push(<option value={key} selected={ key === this.state.to_learn } >{langs[key]}</option>)
+            if (langs.hasOwnProperty(key)) options.push(<option key={key} value={key} >{langs[key]}</option>)
         }
-        return ( <>{options}</> )
+        return ( 
+          <>
+            <option key='0' value='en' >English</option>
+            {options}
+          </> 
+        )
     }
-
-    const languagesShare = () => {
-        const options = []
-        for (var key in langs) {
-            if (langs.hasOwnProperty(key)) options.push(<option value={key} selected={ key === this.state.to_share } >{langs[key]}</option>)
-        }
-        return ( <>{options}</> )
-    }
-    
-
 
     return (
       <>
@@ -60,18 +55,20 @@ class ProfileEdit extends React.Component {
             <label className="login-form-text">
                 <span className="login-form-language">I want to learn</span>
                 <select name="to_learn"
+                  defaultValue={this.state.to_learn}
                   onChange={this.update('to_learn')}
                   className="login-form-selector">
-                  {languagesLearn()}
+                  {languages()}
                 </select>
             </label>
             <br/>
             <label className="login-form-text">
                 <span className="login-form-language">I want to share</span>
                 <select name="to_share"
+                  defaultValue={this.state.to_share}
                   onChange={this.update('to_share')}
                   className="login-form-selector">
-                  {languagesShare()}
+                  {languages()}
                 </select>
             </label>
             <input type="submit" value="Submit" className="login-form-submit" />
