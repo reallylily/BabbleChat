@@ -16,7 +16,8 @@ class Chat extends React.Component {
             displayEmoji: false, 
             currentEmojiPage: 1 
         }
-        this.socket = io(this.state.endpoint);
+        // this.socket = io(this.state.endpoint);
+        this.socket = io()
 
         this.setEmojiMenuRef = this.setEmojiMenuRef.bind(this); 
         
@@ -28,17 +29,24 @@ class Chat extends React.Component {
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
         }); 
-            this.socket.on('display_message', (message_object) => {
+
+        this.socket.emit('join_room', this.props.roomId);
+
+        this.socket.on('display_message', (message_object) => {
+            console.log('message received');
             let new_message_array = this.state.messages;
             new_message_array.push(message_object['message']);
             this.setState({ messages: new_message_array, currentMessage: "" });
+            console.log(this.state.messages);
         });
         document.addEventListener('mousedown', this.handleClickOutsideEmojiMenu);
     };
 
 
     componentWillUnmount() {
-        this.socket.emit('off');
+        console.log('chat component unmounting');
+        this.props.clearRoomId();
+        this.socket.emit('off-chat');
         document.removeEventListener('mousedown', this.handleClickOutsideEmojiMenu);
     }
 
@@ -65,7 +73,9 @@ class Chat extends React.Component {
         e.preventDefault();
         if (this.state.currentMessage !== '') {
             this.socket.emit('chat_message', {
-                message: this.state.currentMessage
+                message: this.state.currentMessage,
+                roomId: this.props.roomId,
+                userId: this.props.currentUserId
             });
         }   
     }

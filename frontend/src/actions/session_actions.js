@@ -5,6 +5,8 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const SAVE_ROOM_ID = "SAVE_ROOM_ID";
+export const CLEAR_ROOM_ID = "CLEAR_ROOM_ID";
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -36,6 +38,15 @@ export const signup = user => dispatch => (
         dispatch(receiveErrors(err.response.data))
     ))
 );
+
+export const saveRoomId = (roomId) => ({
+    type: SAVE_ROOM_ID,
+    roomId
+})
+
+export const clearRoomId = () => ({
+    type: CLEAR_ROOM_ID
+})
 
 // Upon login, set the session token and dispatch the current user. Dispatch errors on failure.
 export const login = user => dispatch => (

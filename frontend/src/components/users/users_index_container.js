@@ -1,19 +1,24 @@
 
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/user_actions';
+import { saveRoomId } from '../../actions/session_actions';
+
 import UsersIndex from './users_index';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     users: state.entities.users.all,
     currentUser: state.session.user,
+    currentUserId: state.session.user.id,
+    history: ownProps.history,
     // users: Object.values(state.entities.users.all)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUsers: () => dispatch(fetchUsers())
+    fetchUsers: () => dispatch(fetchUsers()),
+    saveRoomId: (roomId) => dispatch(saveRoomId(roomId))
   };
 };
 
