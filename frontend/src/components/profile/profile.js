@@ -28,7 +28,7 @@ class Profile extends React.Component {
     }
 
     componentWillReceiveProps(newState) {
-        this.setState({ tweets: newState.tweets });
+        // this.setState({ tweets: newState.tweets });
     }
 
     extractDate(date) {
@@ -49,7 +49,7 @@ class Profile extends React.Component {
           {this.props.currentUser &&
           <div className="profile-page">
             <div className="profile-card">
-              <img width="300px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
+              <img width="300px" src={this.props.currentUser.pic} />
               <div className="profile-description">
                 <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
