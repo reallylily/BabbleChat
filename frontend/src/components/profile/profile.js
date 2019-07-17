@@ -11,6 +11,18 @@ import ProfileEditContainer from './profile_edit_container'
 // import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
+<<<<<<< HEAD
+=======
+    constructor(props) {
+        super(props);
+        this.state = {
+          displayEditForm: false 
+        }
+        // this.state = {
+        //     tweets: []
+        // }
+    }
+>>>>>>> CSS_style11
     
     componentWillMount() {
         // console.log(this.props.currentUser.id)
@@ -25,6 +37,13 @@ class Profile extends React.Component {
     extractDate(date) {
       return date.slice(0, 10); 
     }
+
+    renderEdit(e) {
+      e.preventDefault(); 
+      this.setState({
+        displayEditForm: !this.state.displayEditForm
+      })
+    }
     
     render() {
       // console.log(this.props.currentUser)
@@ -33,16 +52,32 @@ class Profile extends React.Component {
           {this.props.currentUser &&
           <div className="profile-page">
             <div className="profile-card">
-              <img alt='myface' width="200px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
+              <img width="300px" src="https://react.semantic-ui.com/images/avatar/large/matthew.png" />
               <div className="profile-description">
                 <ProfileSnippet name="Username" value={this.props.currentUser.handle} />
                 <ProfileSnippet name="Joined" value={this.extractDate(this.props.currentUser.date)} />
                 <ProfileSnippet name="Learning" value={languages[this.props.currentUser.to_learn]} />
                 <ProfileSnippet name="Speaks" value={languages[this.props.currentUser.to_share]} />
+                {this.state.displayEditForm ? 
+                <button onClick={(e) => this.renderEdit(e)}
+                  className="edit-languages-button">
+                  Nevermind 
+                </button>
+                :
+                <button onClick={(e) => this.renderEdit(e)}
+                    className="edit-languages-button">
+                    Change Language Preferences
+                </button>
+                }
               </div>
             </div>
+                            {this.state.displayEditForm ?
+                  <ProfileEditContainer />
+                  :
+                  null}
           </div>}
-          <ProfileEditContainer/>
+          
+
           <Footer />
           </>
         )

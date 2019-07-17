@@ -47,7 +47,7 @@ class ProfileEdit extends React.Component {
 
     return (
       <>
-      <div className="login-form-container">
+        <div className="login-form-container2">
         <h1 className="login-form-title">Want to change your languages?</h1> 
         <form onSubmit={this.handleSubmit}>
           <div className="login-form">
@@ -71,7 +71,7 @@ class ProfileEdit extends React.Component {
                   {languages()}
                 </select>
             </label>
-            <input type="submit" value="Submit" className="login-form-submit" />
+            <input type="submit" value="Submit" className="login-form-submit2" />
 
           </div>
         </form>

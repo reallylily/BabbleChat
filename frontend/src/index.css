@@ -132,12 +132,37 @@ table {
     background-color: white; 
 }
 
+
 .navbar-header-link {
-  background: #e8f1f5; 
-  color: black; 
+  color: white;  
   font-family: 'Raleway', sans-serif;
-  margin-left: 0.5rem; 
-  margin-right: 0.5rem; 
+  padding-top: 1rem;  
+  padding-bottom: 1rem; 
+  padding-left: 0.75rem; 
+  padding-right: 0.75rem; 
+  border-radius: 15px 15px 0px 0px; 
+}
+
+.navbar-header-link-hover {
+  background: #e8f1f5;
+  color: black; 
+  padding-top: 1rem;  
+  padding-bottom: 1rem; 
+  padding-left: 0.75rem; 
+  padding-right: 0.75rem; 
+  border-radius: 15px 15px 0px 0px; 
+  font-family: 'Raleway', sans-serif;
+}
+
+.navbar-header-link:hover {
+  background: #e8f1f5;
+  color: black; 
+  padding-top: 1rem;  
+  padding-bottom: 1rem; 
+  padding-left: 0.75rem; 
+  padding-right: 0.75rem; 
+  border-radius: 15px 15px 0px 0px; 
+  font-family: 'Raleway', sans-serif;
 }
 
 a {
@@ -165,6 +190,38 @@ a {
   box-sizing: border-box; 
 }
 
+.login-form-container2 {
+  text-align: center; 
+  margin: 0 auto;
+  margin-top: 3rem; 
+  margin-bottom: 5rem; 
+  padding-top: 0.5rem;
+  padding-bottom: 2rem; 
+  padding-left: 1.5rem; 
+  padding-right: 1.5rem; 
+}
+
+.login-form-submit2 {
+  background: #005691; 
+  color: white; 
+  font-family: 'Raleway', sans-serif;
+  padding: 1rem; 
+  padding-top: 0.25rem; 
+  padding-bottom: 0.25rem;  
+  font-size: 1.5rem; 
+  border: none; 
+  display: block; 
+  text-align: center; 
+  margin: 0 auto; 
+  margin-top: 1rem; 
+  margin-bottom: 2rem; 
+}
+
+.login-form-submit2:hover {
+  background: #1a85cc; 
+  border: none; 
+  cursor: pointer; 
+}
 
 /*****************************/
 /******* SIGNUP STYLING ******/
@@ -315,13 +372,36 @@ select {
 /*****************************/
 /******** PROFILE PAGE  ******/
 /*****************************/
+.edit-languages-button {
+  border: none; 
+  font-family: 'Raleway', sans-serif; 
+  font-size: 1.1rem; 
+  float: right; 
+  background: #005691; 
+  color: white;
+  margin-top: 0.5rem;  
+  padding-top: 0.15rem; 
+  padding-bottom: 0.15rem; 
+}
+
+.edit-languages-button:hover {
+  background: #1a85cc; 
+  cursor: pointer; 
+}
+
+.edit-languages-button:focus {
+  outline: none; 
+}
 
 .profile-page {
   padding: 3rem; 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
 }
 
 .profile-card {
-  width: 200px; 
+  width: 300px; 
 }
 
 .profile-description {
