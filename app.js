@@ -121,7 +121,24 @@ function onConnect(socket) {
         socket.join(room_id, () => {
             let rooms = Object.keys(socket.rooms);
             console.log(`joining these rooms: ${rooms}`);}
-        )
+        );
+        io.sockets.in(room_id).emit('request_partner_data');
+    })
+
+    socket.on('send_own_user_data', (user_data_object) => {
+        const user_handle = user_data_object['user_handle'];
+        const learn_lang = user_data_object['learning_language'];
+        const share_lang = user_data_object['sharing_language'];
+        const room_id = user_data_object['roomId'];
+        console.log(user_data_object);
+        console.log(room_id);
+        // io.sockets.in(room_id).
+        console.log('send_user_data');
+        socket.to(room_id).emit('chat_partner_data', {
+            other_user_handle: user_handle,
+            other_learn_lang: learn_lang,
+            other_share_lang: share_lang
+        })
     })
 
     socket.on('chat_message', (message_object) => {
@@ -130,7 +147,6 @@ function onConnect(socket) {
         const room_id_of_message = message_object['roomId'];
         const message_body = message_object['message'];
         const author_id = message_object['userId'];
-
         io.sockets.in(room_id_of_message).emit('display_message', {
             message: message_body,
             userId: author_id
