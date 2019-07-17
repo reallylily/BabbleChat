@@ -136,9 +136,14 @@ function onConnect(socket) {
         })
     })
 
-    socket.on('off', () => {
-        console.log('chat socket is being turned off');
+    socket.on('off-users-index', () => {
+        console.log('users index socket is being turned off');
         remove_user_from_possible_rooms(socket.id);
+        socket.disconnect();
+    })
+
+    socket.on('off-chat', () => {
+        console.log('chat socket is being turned off');
         socket.disconnect();
     })
 

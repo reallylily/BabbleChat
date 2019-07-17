@@ -43,7 +43,7 @@ class Chat extends React.Component {
     componentWillUnmount() {
         console.log('chat component unmounting');
         this.props.clearRoomId();
-        this.socket.emit('off');
+        this.socket.emit('off-chat');
     }
 
     update () {

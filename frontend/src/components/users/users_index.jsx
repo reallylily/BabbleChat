@@ -53,7 +53,7 @@ class UsersIndex extends React.Component {
   }
 
   componentWillUnmount() {
-    this.socket.emit('off');
+    this.socket.emit('off-users-index');
 
   }
 
