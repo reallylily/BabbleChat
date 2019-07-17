@@ -163,7 +163,7 @@ class Chat extends React.Component {
                             <div className="emoji-items-list">
                             {this.state.currentEmojiPage === 1 &&
                                 <>
-                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😀</button>
+                                    <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}><span role='img' aria-label="Smiling">😀</span></button>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😃</button>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>😂</button>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🤣</button>

@@ -28,6 +28,7 @@ router.get('/current', passport.authenticate('jwt', {session: false}), (req, res
         to_learn: req.user.to_learn,
         to_share: req.user.to_share,
         date: req.user.date, 
+        pic: req.user.pic
     })
 })
 
@@ -48,7 +49,8 @@ router.post('/register', (req, res) => {
                     email: req.body.email, 
                     password: req.body.password,
                     to_learn: req.body.to_learn,
-                    to_share: req.body.to_share
+                    to_share: req.body.to_share,
+                    pic: req.body.pic
                 }); 
 
                 bcrypt.genSalt(10, (err, salt) => {
@@ -91,7 +93,8 @@ router.post('/login', (req, res) => {
                             email: user.email,
                             to_learn: user.to_learn,
                             to_share: user.to_share,
-                            date: user.date 
+                            date: user.date,
+                            pic: user.pic,
                         }
                         jwt.sign(
                             payload, 

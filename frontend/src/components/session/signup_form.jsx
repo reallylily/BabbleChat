@@ -21,6 +21,10 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
+  componentDidMount() {
+    this.props.fetchDog();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
       this.props.history.push('/profile');
@@ -44,6 +48,7 @@ class SignupForm extends React.Component {
       password2: this.state.password2,
       to_learn: this.state.to_learn,
       to_share: this.state.to_share,
+      pic: this.props.pic
     };
     
     this.props.signup(user, this.props.history).then(()=>{
