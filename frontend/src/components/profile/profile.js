@@ -11,8 +11,6 @@ import ProfileEditContainer from './profile_edit_container'
 // import TweetBox from '../tweets/tweet_box';
 
 class Profile extends React.Component {
-<<<<<<< HEAD
-=======
     constructor(props) {
         super(props);
         this.state = {
@@ -22,7 +20,6 @@ class Profile extends React.Component {
         //     tweets: []
         // }
     }
->>>>>>> CSS_style11
     
     componentWillMount() {
         // console.log(this.props.currentUser.id)
