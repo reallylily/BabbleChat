@@ -617,15 +617,29 @@ select {
 /******** CHAT USERS PAGE  ******/
 /********************************/
 
-.chat-users-page {
-  padding: 3rem; 
+
+.users-grid {
+  display: inline;  
+  margin: 0 auto; 
 }
 
+.chat-users-page {
+  padding: 3rem; 
+  text-align: center; 
+}
 
+.chat-users-name {
+  margin: 0 auto; 
+  display: block; 
+}
 
 .chat-users-item {
   font-family: 'Raleway', sans-serif; 
-  display: flex; 
+  display: inline-block;  
+  width: 200px; 
+  height: 200px; 
+  margin-left: 10px; 
+  margin-right: 10px; 
   justify-content: space-between; 
   align-items: center; 
   margin-bottom: 0.5rem; 
@@ -638,33 +652,43 @@ select {
 
 .chat-users-item2 {
   font-family: 'Raleway', sans-serif; 
-  display: flex; 
+  display: inline-block; 
+  width: 200px; 
+  height: 200px; 
+  margin-left: 10px; 
+  margin-right: 10px; 
   justify-content: space-between; 
   align-items: center; 
   margin-bottom: 0.5rem; 
-  border: 1px solid #f65026; 
-  background: #f65026; 
+
+  /* PINK ATTEMPT */
+  /* background: rgb(221, 111, 127);  */
+
+  /* RED ATTEMPT */
+  border: 1px solid #c42626; 
+  background: #a40000; 
+
+  /* ORIGINAL */
+  /* border: 1px solid #f65026; 
+  background: #f65026;  */
   color: white; 
   border-radius: 15px; 
   padding: 0.5rem; 
 }
 
-.chat-users-item2:hover {
-  font-family: 'Raleway', sans-serif; 
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  margin-bottom: 0.5rem; 
-  border: 1px solid #ed6e4e; 
-  background: #ed6e4e; 
-  color: white; 
-  border-radius: 15px; 
-  padding: 0.5rem; 
+.chat-users-item:hover {
+  background: #1a85cc; 
   cursor: pointer; 
 }
 
+.chat-users-item2:hover {
+  background: #c75d5d; 
+  cursor: pointer; 
+}
+
+
 .chat-users-active-language {
-  color: #ed6e4e; 
+  color: #a73d3d; 
   font-weight: bold; 
 }
 
@@ -674,66 +698,52 @@ select {
 }
 
 .chat-users-digit {
-  color: #ed6e4e; 
+  color: #a73d3d; 
   font-weight: bold; 
 }
 
-.chat-users-item:hover {
-  background: #1a85cc; 
-  cursor: pointer; 
-}
-
 .chat-users-profile-image {
-  margin-right: 1rem; 
   border-radius: 5px; 
+  display: block; 
+  height: 95px; 
+  width: 95px; 
+  margin: 0 auto; 
 }
 
 .chat-users-profile-handle {
   font-weight: bold; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  margin-bottom: 0.25rem; 
 }
 
 .chat-users-right {
   display: flex; 
-  direction: row; 
-  align-items: center; 
+  direction: column; 
 }
 
 .chat-users-language-pref {
   display: flex; 
-  flex-direction: row; 
-  margin-right: 2rem; 
+  justify-content: space-between; 
+  flex-direction: column; 
   text-align: right; 
+  padding-top: 0.5rem; 
+  width: 100%; 
 }
 
-.chat-users-start-convo-button {
+.chat-users-start-convo-button, .chat-users-start-convo-button2 {
     background-color: transparent; 
     color: white; 
     border: none; 
     border-radius: 15px; 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem; 
     padding-left: 0.85rem; 
     padding-right: 0.85rem; 
-    height: 100%; 
-    font-size: 1.2rem; 
+    font-size: 1rem; 
     font-family: 'Raleway', sans-serif;
     font-weight: bold; 
 }
 
-.chat-users-start-convo-button2 {
-    background-color: transparent; 
-    color: white; 
-    border: none; 
-    border-radius: 15px; 
-    padding-top: 0.5rem; 
-    padding-bottom: 0.5rem; 
-    padding-left: 0.85rem; 
-    padding-right: 0.85rem; 
-    height: 100%; 
-    font-size: 1.2rem; 
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold; 
-}
 
 .chat-users-start-convo-button:hover {
     border: none; 
@@ -743,7 +753,7 @@ select {
 
 .chat-users-start-convo-button2:hover {
     border: none; 
-    background-color: #ed6e4e; 
+    background-color: #f3795b; 
     cursor: pointer; 
 }
 
@@ -762,17 +772,41 @@ select {
   padding-top: 0.1rem; 
   padding-bottom: 0.1rem; 
   border-radius: 10px; 
-  margin-top: 0.35rem; 
+  margin-left: 1rem; 
+}
+
+.chat-users-tags2 {
+  background: #fcdcdc;
+  color: black;  
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem; 
+  padding-top: 0.1rem; 
+  padding-bottom: 0.1rem; 
+  border-radius: 10px; 
+  margin-left: 1rem; 
 }
 
 .chat-users-learning {
-  margin-right: 1rem; 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  margin-top: 0.1rem; 
+  margin-bottom: 0.1rem; 
+}
+
+.chat-users-speaking {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-between; 
+  margin-top: 0.1rem; 
+  margin-bottom: 0.1rem; 
 }
 
 .chat-users-number {
   font-size: 1.5rem; 
   font-family: 'Literata', serif;
   margin-bottom: 1.5rem; 
+  text-align: left; 
 }
 
 /********************************/

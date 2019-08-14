@@ -52,8 +52,6 @@ class NavBar extends React.Component {
         <div className="navbar-fullscreen-tab">
           <Link to={'/users'} className={this.state.navbar1 ? "navbar-header-link-hover" : "navbar-header-link"}
             onClick={() => this.handleClick1()}>Find a Babble Buddy</Link>
-          <Link to={'/chat'} className={this.state.navbar2 ? "navbar-header-link-hover" : "navbar-header-link"}
-            onClick={() => this.handleClick2()}>Live Chat</Link>
           <Link to={'/profile'} className={this.state.navbar3 ? "navbar-header-link-hover" : "navbar-header-link"}
             onClick={() => this.handleClick3()}>Profile</Link>
            

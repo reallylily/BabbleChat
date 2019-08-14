@@ -85,7 +85,7 @@ class Chat extends React.Component {
                     partner_share_lang: partner_share_lang,
                 });
             }
-                // console.log(this.state);
+                console.log(this.state);
         });
 
         this.socket.on('display_message', (message_object) => {
@@ -248,7 +248,7 @@ class Chat extends React.Component {
 
                             <button className="chat-box-trigger-emoji-list-button"
                                 onClick={(e) => this.triggerGifList(e)}>
-                                <i class="fas fa-video"></i>
+                                <i className="fas fa-video"></i>
                         </button>
 
                         <button className="chat-box-trigger-emoji-list-button"

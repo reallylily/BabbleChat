@@ -14,24 +14,28 @@ class UsersIndexItem extends React.Component {
 
     render() {
         return (
-            <div className={this.props.sameLang ? "chat-users-item2" : "chat-users-item"}>
+            <div className={this.props.sameLang ? "chat-users-item2" : "chat-users-item"}
+                onClick={(e) => this.handleClick(e)}>
 
                 <div className="chat-users-name">
-                    <img height="55px"
-                        width="55px" 
-                        src={this.props.user.pic}
+                    <div className="chat-users-profile-handle">
+                        <div>{this.props.user.handle}</div>
+
+                    </div>
+                    
+                    <img src={this.props.user.pic}
                         className="chat-users-profile-image" />
-                    <span className="chat-users-profile-handle">{this.props.user.handle} </span>
+                    
                 </div>
 
                 <div className="chat-users-right">
                     <div className="chat-users-language-pref">
-                        <div className="chat-users-learning">Learning <div className="chat-users-tags">{languages[this.props.user.to_learn]}</div></div>
-                        <div className="chat-users-speaking">Speaks <div className="chat-users-tags">{languages[this.props.user.to_share]}</div></div>
+                        <div className="chat-users-learning">Learning <div className={this.props.sameLang ? "chat-users-tags2" : "chat-users-tags"}>{languages[this.props.user.to_learn]}</div></div>
+                        <div className="chat-users-speaking">Speaks <div className={this.props.sameLang ? "chat-users-tags2" : "chat-users-tags"}>{languages[this.props.user.to_share]}</div></div>
                     </div>
-                
 
-                    <button onClick={(e) => this.handleClick(e)} className={this.props.sameLang ? "chat-users-start-convo-button" : "chat-users-start-convo-button2"} >Talk To Me</button>
+                    {/* <button onClick={(e) => this.handleClick(e)} className={this.props.sameLang ? "chat-users-start-convo-button" : "chat-users-start-convo-button2"} >Talk To Me</button> */}
+
                 </div>
             </div>
         )

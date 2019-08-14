@@ -78,17 +78,25 @@ class UsersIndex extends React.Component {
             if (user.email !== this.props.currentUser.email) users.push(<UsersIndexItem key={user._id} user={user} sameLang={false} requestRoom={this.requestRoom} />)
           }
         })
+
+        // Want to create search function 
+        const all_users = users.concat(same_lang_users); 
+        console.log(all_users); 
+        
+        console.log('The same language users'); 
+        console.log(same_lang_users); 
+
+        console.log('Regular language users'); 
+        console.log(users); 
       return (
         <>
         <div className="chat-users-page">
-            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> online</h2>
-            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> online</h2>
-          <ul>
+            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> </h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> </h2>
+          <div className="users-grid">
               {same_lang_users}
-          </ul>
-          <ul>
               {users}
-          </ul>
+          </div>
         </div>
         <Footer />
         </>
