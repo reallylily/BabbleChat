@@ -459,6 +459,10 @@ select {
   cursor: pointer; 
 }
 
+.login-form-submit:focus {
+  outline: none; 
+}
+
 .signup-form-submit:hover {
   background: #ed6e4e; 
   border: none; 
@@ -621,6 +625,28 @@ select {
 .users-grid {
   display: inline;  
   margin: 0 auto; 
+}
+
+.chat-users-nousers {
+  padding-top: 1rem; 
+  font-family: 'Raleway', sans-serif; 
+}
+
+.chat-users-searchbar {
+  padding-top: 0.5rem; 
+  padding-bottom: 0.5rem; 
+  padding-left: 0.75rem; 
+  padding-right: 0.75rem; 
+  width: 50%; 
+  font-size: 1rem; 
+  font-family: 'Raleway', sans-serif; 
+  border-radius: 15px; 
+  border: 0px; 
+}
+
+.chat-users-searchbar:focus {
+  outline: none; 
+  border: 1px solid #005691; 
 }
 
 .chat-users-page {

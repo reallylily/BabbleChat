@@ -6,16 +6,28 @@ import UsersIndexItem from './users_index_item';
 import languages from '../languages/languages'
 import io from "socket.io-client";
 
+
 class UsersIndex extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: []
+      users: [], 
+      showAdvanced: false 
     }
+
+    
     this.possibleRoom = '';
     this.requestRoom = this.requestRoom.bind(this);
     this.socket = io();
+
+    this.handleChange = this.handleChange.bind(this); 
+  }
+
+  handleChange(e) {
+    this.setState({
+      users: this.props.users.filter(x => x.handle.toLowerCase().includes(e.target.value.toLowerCase()))
+    })
   }
 
   requestRoom(other_user_id) {
@@ -64,7 +76,20 @@ class UsersIndex extends React.Component {
 
   render() {
     if (this.state.users.length === 0) {
-      return (<div>There are no Users</div>)
+      return (
+        <>
+          <div className="chat-users-page">
+
+            <input className="chat-users-searchbar"
+            onChange={(e) => this.handleChange(e)} 
+            type="text"
+            placeholder="Search for a user" />
+
+
+
+            <div className="chat-users-nousers">No users match your criteria.</div>
+          </div>
+        </>)
     } else {
         // const users = this.state.users.map(user => (
         //     <UsersIndexItem key={user._id} user={user} />
@@ -81,16 +106,17 @@ class UsersIndex extends React.Component {
 
         // Want to create search function 
         const all_users = users.concat(same_lang_users); 
-        console.log(all_users); 
-        
-        console.log('The same language users'); 
-        console.log(same_lang_users); 
+        console.log(all_users.map(x => x.props.user))
 
-        console.log('Regular language users'); 
-        console.log(users); 
+        // console.log(all_users.map(x => x.props.user.date).sort())
       return (
         <>
+
         <div className="chat-users-page">
+            <input className="chat-users-searchbar"
+              onChange={(e) => this.handleChange(e)}
+              type="text"
+              placeholder="Search for a user"  />
             <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> </h2>
             <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> </h2>
           <div className="users-grid">

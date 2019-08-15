@@ -5,10 +5,16 @@ class UsersIndexItem extends React.Component {
     
     constructor(props) {
         super(props);
+        this.state = {
+            waiting: false
+        }
     }
 
     handleClick(e) {
         e.preventDefault();
+        this.setState({
+            waiting: true 
+        })
         this.props.requestRoom(this.props.user._id);
     }
 
@@ -20,6 +26,7 @@ class UsersIndexItem extends React.Component {
                 <div className="chat-users-name">
                     <div className="chat-users-profile-handle">
                         <div>{this.props.user.handle}</div>
+                        {this.state.waiting === true ? <div>Waiting...</div> : null}
 
                     </div>
                     
@@ -32,6 +39,7 @@ class UsersIndexItem extends React.Component {
                     <div className="chat-users-language-pref">
                         <div className="chat-users-learning">Learning <div className={this.props.sameLang ? "chat-users-tags2" : "chat-users-tags"}>{languages[this.props.user.to_learn]}</div></div>
                         <div className="chat-users-speaking">Speaks <div className={this.props.sameLang ? "chat-users-tags2" : "chat-users-tags"}>{languages[this.props.user.to_share]}</div></div>
+
                     </div>
 
                     {/* <button onClick={(e) => this.handleClick(e)} className={this.props.sameLang ? "chat-users-start-convo-button" : "chat-users-start-convo-button2"} >Talk To Me</button> */}
