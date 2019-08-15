@@ -158,7 +158,9 @@ function onConnect(socket) {
         const room_id_of_message = message_object['roomId'];
         const message_body = message_object['message'];
         const author_id = message_object['userId'];
+        const is_gif = message_object['gif']
         io.sockets.in(room_id_of_message).emit('display_message', {
+            gif: is_gif,
             message: message_body,
             userId: author_id
         })

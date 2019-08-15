@@ -36,11 +36,35 @@ class Display extends React.Component {
                     <ul>
                         {this.messages.map((message, idx) => 
                             <li key={idx} className={message.userId === this.currentUserId ? "chat-box-message" : "chat-box-message-opponent"}>
+                                {message.gif ?
+
+
+                                 message.userId === this.currentUserId ? 
+                                    <div className="chat-box-image-text">
+                                        <div>
+                                            <img className="chat-box-gif-you" src={message.message}></img>
+                                        </div>
+                                        <div className="chat-box-profile-image-wrapper-you">
+                                            <img className="chat-box-profile-image" src={this.props.yourPic}></img>
+                                        </div>
+                                    </div>
+                                     :
+                                    <div className="chat-box-image-text">
+                                        <div className="chat-box-profile-image-wrapper-opp">
+                                            <img className="chat-box-profile-image" src={this.props.oppPic}></img>
+                                        </div>
+                                        <div>
+                                            <img id="chat-box-gif-opp" src={message.message}></img>
+                                        </div>
+                                    </div>
+                                    
+                                : 
                                 <TranslateMessageContainer text={message.message} 
                                 key={idx} 
                                 ownMessage={message.userId === this.currentUserId}
                                 yourPic={this.props.yourPic}
                                 oppPic={this.props.oppPic} />
+                                }
                             </li>)
                         }
                     </ul>

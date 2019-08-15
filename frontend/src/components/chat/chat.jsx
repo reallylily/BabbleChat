@@ -123,6 +123,7 @@ class Chat extends React.Component {
         if (this.state.currentMessage !== '') {
             this.setState({ currentMessage: "" })
             this.socket.emit('chat_message', {
+                gif: false,
                 message: this.state.currentMessage.trim(),
                 roomId: this.props.roomId,
                 userId: this.props.currentUserId
@@ -132,7 +133,14 @@ class Chat extends React.Component {
 
     handleSubmitImage(e) {
         console.log('hello')
-        console.log(e.currentTarget.value)
+        console.log(e.currentTarget.src)
+        this.socket.emit('chat_message', {
+            gif: true,
+            message: e.currentTarget.src,
+            roomId: this.props.roomId,
+            userId: this.props.currentUserId
+        });
+
     }
 
     triggerEmojiList(e) {
@@ -226,6 +234,7 @@ class Chat extends React.Component {
             <>
             
             <div className="chat-box">
+                    <div className="chat-box-tagline">You are chatting with <span className="chat-box-opp-name">{this.state.partner_handle}</span>.</div>
 
                 <Display className="chat-box-display-messages" 
                         messages={this.state.messages}
