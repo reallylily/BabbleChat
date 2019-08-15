@@ -82,8 +82,8 @@ class Chat extends React.Component {
         this.socket.on('display_message', (message_object) => {
             console.log('message received');
             let new_message_array = this.state.messages;
-            new_message_array.push(message_object['message']);
-            // new_message_array.push(message_object);
+            // new_message_array.push(message_object['message']);
+            new_message_array.push(message_object);
             this.setState({ messages: new_message_array});
             console.log(this.state.messages);
         });
@@ -123,7 +123,7 @@ class Chat extends React.Component {
         if (this.state.currentMessage !== '') {
             this.setState({ currentMessage: "" })
             this.socket.emit('chat_message', {
-                message: this.state.currentMessage,
+                message: this.state.currentMessage.trim(),
                 roomId: this.props.roomId,
                 userId: this.props.currentUserId
             });

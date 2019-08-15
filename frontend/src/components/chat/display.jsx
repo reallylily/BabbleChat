@@ -17,6 +17,7 @@ class Display extends React.Component {
 
     componentDidUpdate() {
         this.scrollToBottom(); 
+        console.log(this.messages);
     }
 
     scrollToBottom = () => {
@@ -24,18 +25,18 @@ class Display extends React.Component {
     }
 
     render() {
-        const messages = this.messages.map((message, idx)=>(
-            <TranslateMessageContainer text={message} key={idx}/>
-        ));
-
+        // const messages = this.messages.map((message, idx)=>(
+        //     <TranslateMessageContainer text={message.message} key={idx}/>
+        // ));
+        
 
         return (
             <div className="chat-box-display-container">
                 <div className="messages">
                     <ul>
-                        {messages.map((message, idx) => 
-                            <li key={idx} className={idx % 2 === 0 ? "chat-box-message" : "chat-box-message-opponent"}>
-                                {message}
+                        {this.messages.map((message, idx) => 
+                            <li key={idx} className={message.userId === this.currentUserId ? "chat-box-message" : "chat-box-message-opponent"}>
+                                <TranslateMessageContainer text={message.message} key={idx} ownMessage={message.userId === this.currentUserId}/>
                             </li>)
                         }
                     </ul>

@@ -23,7 +23,7 @@ class TranslateWord extends React.Component {
             let to_share = this.props.user.to_share
             this.translate(text, { to: to_share })
                 .then(res => {
-                    this.setState({ bubble: this.state.bubble = () => (<Bubble text={res.text} response={res} />) })
+                    this.setState({ bubble: this.state.bubble = () => (<Bubble text={res.text} ownMessage={this.props.ownMessage} response={res} />) })
                     console.log(res.text)
 
                 })
@@ -43,29 +43,29 @@ class TranslateWord extends React.Component {
         const button = () =>{
             if (this.props.myIndex === 0 && this.props.myIndex === this.props.myLength -1) {
                 return (
-                    <button className="chat-box-message-detail-round-center"
+                    <button className={this.props.ownMessage ? "chat-box-message-detail-round-center" : "chat-box-message-detail-round-center opponent" }
                         onClick={() => this.handleClick()}>{this.props.text}</button>
                 ) 
             } else if (this.props.myIndex === 0) {
                 return (
-                    <button className="chat-box-message-detail-round-left"
+                    <button className={this.props.ownMessage ? "chat-box-message-detail-round-left" : "chat-box-message-detail-round-left opponent"}
                         onClick={() => this.handleClick()}>{this.props.text}</button>
                 )
             } else if (this.props.myIndex === this.props.myLength - 1) {
                 return (
-                    <button className="chat-box-message-detail-round-right"
+                    <button className={this.props.ownMessage ? "chat-box-message-detail-round-right" : "chat-box-message-detail-round-right opponent"}
                         onClick={() => this.handleClick()}>{this.props.text}</button>
                 )
             } else {
                 return (
-                    <button className="chat-box-message-detail"
+                    <button className={this.props.ownMessage ? "chat-box-message-detail" : "chat-box-message-detail opponent"}
                         onClick={() => this.handleClick()}>{this.props.text}</button>
                 )
             }
         }
         return (
             <div style={{ display: 'flex', flexDirection: 'column'}}>
-                <span className="chat-box-bubble">{this.state.bubble ? this.state.bubble() : null }</span>
+                <span className={this.props.ownMessage ? "chat-box-bubble" : "chat-box-bubble-opponent"}>{this.state.bubble ? this.state.bubble() : null }</span>
                 {button()}
                 
                 {/* {this.props.myIndex === 0 || this.props.myIndex == this.props.myLength - 1 ? 

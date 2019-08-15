@@ -7,7 +7,7 @@ import TranslateWord from './translate_word'
 class TranslateMessage extends React.Component {
   render() {
     const words = this.props.text.split(' ').map((word ,idx, words) =>(
-      <TranslateWord text={word} key={idx} myIndex={idx} myLength={words.length} user={this.props.user}/>
+      <TranslateWord text={word} key={idx} myIndex={idx} myLength={words.length} user={this.props.user} ownMessage={this.props.ownMessage}/>
     ))
     // console.log(this.props.user)
     // const translate = setCORS("http://cors-anywhere.herokuapp.com/");

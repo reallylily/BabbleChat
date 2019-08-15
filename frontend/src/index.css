@@ -1008,6 +1008,34 @@ select {
   margin-bottom: 2rem; 
 }
 
+.chat-box-bubble {
+
+}
+
+.chat-box-bubble-opponent {
+  /* background: #a40000; */
+}
+
+.popup-bubble {
+  color: white; 
+  background: #005691;  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; 
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 10px;
+}
+
+.popup-bubble-opponent {
+  color: white; 
+  background: #a40000;  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; 
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 10px;
+}
+
 .chat-box-display-container {
   background: white; 
   height: 65vh; 
@@ -1019,7 +1047,9 @@ select {
 
 .chat-box-message {
   background: white; 
-  display: block; 
+  display: flex; 
+  justify-content: flex-end; 
+  /* float: right;  */
   /* float: left; 
   clear: left; 
   position: relative;  */
@@ -1035,8 +1065,9 @@ select {
 
 .chat-box-message-opponent {
   background: white; 
-  display: inline-block; 
-  float: right; 
+  display: flex; 
+  justify-content: flex-start; 
+  /* float: left;  */
   padding-left: 0.5rem; 
   padding-right: 0.5rem; 
   padding-top: 0.3rem; 
@@ -1095,6 +1126,10 @@ select {
   border-radius: 10px; 
 }
 
+.opponent {
+  background: #fdcfcf;
+}
+
 .chat-box-message-detail:hover {
   background: #005691; 
   color: white; 
@@ -1138,6 +1173,18 @@ select {
   padding-bottom: 0.3rem; 
   padding-left: 0.5rem; 
   padding-right: 0.5rem; 
+  border-radius: 10px; 
+  margin-bottom: 0.25rem; 
+  cursor: pointer; 
+}
+
+.opponent:hover {
+  background: #a40000; 
+  color: white; 
+  padding-top: 0.3rem; 
+  padding-bottom: 0.3rem; 
+  padding-left: 0.15rem; 
+  padding-right: 0.15rem;  
   border-radius: 10px; 
   margin-bottom: 0.25rem; 
   cursor: pointer; 
