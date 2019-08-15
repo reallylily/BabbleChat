@@ -642,11 +642,42 @@ select {
   font-family: 'Raleway', sans-serif; 
   border-radius: 15px; 
   border: 0px; 
+  box-sizing: border-box; 
 }
 
 .chat-users-searchbar:focus {
   outline: none; 
   border: 1px solid #005691; 
+}
+
+.chat-users-advanced {
+  background: #005691; 
+  border-radius: 5px; 
+  margin-top: 1rem; 
+  margin-bottom: 1rem; 
+  padding-top: 1rem; 
+  padding-bottom: 1rem; 
+  padding-left: 1.5rem; 
+  padding-right: 1.5rem; 
+  display: flex; 
+  flex-direction: column; 
+}
+
+.chat-users-selector-language {
+  color: slategray; 
+  outline: none; 
+  border: none; 
+  font-size: 1rem; 
+  padding-left: 1rem; 
+  padding-right: 1rem; 
+  padding-top: 0.5rem; 
+  padding-bottom: 0.5rem;
+  margin-top: 0.1rem;  
+  margin-bottom: 0.5rem; 
+  font-family: 'Raleway', sans-serif; 
+  border-radius: 15px; 
+  font-weight: bold; 
+  width: 255px; 
 }
 
 .chat-users-page {
@@ -676,6 +707,24 @@ select {
   padding: 0.5rem; 
 }
 
+.chat-users-item-pulsing {
+  font-family: 'Raleway', sans-serif; 
+  display: inline-block;  
+  width: 200px; 
+  height: 200px; 
+  margin-left: 10px; 
+  margin-right: 10px; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 0.5rem; 
+  border: 1px solid #005691; 
+  background: #005691; 
+  color: white; 
+  border-radius: 15px; 
+  padding: 0.5rem; 
+  animation: pulse 2s infinite; 
+}
+
 .chat-users-item2 {
   font-family: 'Raleway', sans-serif; 
   display: inline-block; 
@@ -686,20 +735,35 @@ select {
   justify-content: space-between; 
   align-items: center; 
   margin-bottom: 0.5rem; 
-
-  /* PINK ATTEMPT */
-  /* background: rgb(221, 111, 127);  */
-
-  /* RED ATTEMPT */
   border: 1px solid #c42626; 
   background: #a40000; 
-
-  /* ORIGINAL */
-  /* border: 1px solid #f65026; 
-  background: #f65026;  */
   color: white; 
   border-radius: 15px; 
   padding: 0.5rem; 
+}
+
+.chat-users-item2-pulsing {
+  font-family: 'Raleway', sans-serif; 
+  display: inline-block; 
+  width: 200px; 
+  height: 200px; 
+  margin-left: 10px; 
+  margin-right: 10px; 
+  justify-content: space-between; 
+  align-items: center; 
+  margin-bottom: 0.5rem; 
+  border: 1px solid #c42626; 
+  background: #a40000; 
+  color: white; 
+  border-radius: 15px; 
+  padding: 0.5rem; 
+  animation: pulse 2s infinite; 
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  to { transform: scale(1); }
 }
 
 .chat-users-item:hover {

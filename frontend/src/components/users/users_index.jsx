@@ -13,7 +13,10 @@ class UsersIndex extends React.Component {
 
     this.state = {
       users: [], 
-      showAdvanced: false 
+      showAdvanced: false, 
+      filteredUsers: [],   
+      learnLanguage: '', 
+      speakLanguage: ''
     }
 
     
@@ -22,6 +25,8 @@ class UsersIndex extends React.Component {
     this.socket = io();
 
     this.handleChange = this.handleChange.bind(this); 
+    this.handleLearningLanguage = this.handleLearningLanguage.bind(this); 
+    this.handleSpeakingLanguage = this.handleSpeakingLanguage.bind(this); 
   }
 
   handleChange(e) {
@@ -29,6 +34,31 @@ class UsersIndex extends React.Component {
       users: this.props.users.filter(x => x.handle.toLowerCase().includes(e.target.value.toLowerCase()))
     })
   }
+
+  handleLearningLanguage(e) {
+    if (e.target.value === 'none') {
+      this.setState({
+        users: this.props.users 
+      })
+    } else {
+      this.setState({
+        users: this.props.users.filter(x => x.to_learn === e.target.value)
+      })
+    }
+  }
+
+  handleSpeakingLanguage(e) {
+    if (e.target.value === 'none') {
+      this.setState({
+        users: this.props.users
+      })
+    } else {
+      this.setState({
+        users: this.props.users.filter(x => x.to_share === e.target.value)
+      })
+    }
+  }
+
 
   requestRoom(other_user_id) {
     const room_ids = [];
@@ -85,10 +115,24 @@ class UsersIndex extends React.Component {
             type="text"
             placeholder="Search for a user" />
 
-            <div>
-              Advanced 
+              <div className="chat-users-advanced">
+                <select name="learning-language"
+                  onChange={this.handleLearningLanguage}
+                  className="chat-users-selector-language">
+                  <option value="none">None</option>
+                  {Object.keys(languages).map(x =>
+                    <option key={x} value={x}>{languages[x]}</option>)}
+                </select>
 
-            </div>
+                <select name="speaking-language"
+                  onChange={this.handleSpeakingLanguage}
+                  className="chat-users-selector-language">
+                  <option value="none">None</option>
+                  {Object.keys(languages).map(x =>
+                    <option key={x} value={x}>{languages[x]}</option>)}
+                </select>
+              </div>
+
 
             <div className="chat-users-nousers">No users match your criteria.</div>
           </div>
@@ -110,7 +154,7 @@ class UsersIndex extends React.Component {
         // Want to create search function 
         const all_users = users.concat(same_lang_users); 
         console.log(all_users.map(x => x.props.user))
-
+        console.log(languages); 
         // console.log(all_users.map(x => x.props.user.date).sort())
       return (
         <>
@@ -121,9 +165,22 @@ class UsersIndex extends React.Component {
               type="text"
               placeholder="Search for a user"  />
 
-            <div>
-              Advanced
+            <div className="chat-users-advanced">
+              <select name="learning-language"
+                onChange={this.handleLearningLanguage}
+                className="chat-users-selector-language">
+                  <option value="none">None</option>
+                  {Object.keys(languages).map(x => 
+                    <option key={x} value={x}>{languages[x]}</option>)}
+              </select>
 
+              <select name="speaking-language"
+                onChange={this.handleSpeakingLanguage}
+                className="chat-users-selector-language">
+                  <option value="none">None</option>
+                {Object.keys(languages).map(x =>
+                  <option key={x} value={x}>{languages[x]}</option>)}
+              </select>
             </div>
 
             <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> </h2>

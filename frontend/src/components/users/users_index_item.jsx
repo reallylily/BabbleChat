@@ -20,7 +20,7 @@ class UsersIndexItem extends React.Component {
 
     render() {
         return (
-            <div className={this.props.sameLang ? "chat-users-item2" : "chat-users-item"}
+            <div className={this.props.sameLang && this.state.waiting ? "chat-users-item2-pulsing" : this.props.sameLang && !this.state.waiting ? "chat-users-item2" : !this.props.sameLang && this.state.waiting ? "chat-users-item-pulsing" : "chat-users-item"}
                 onClick={(e) => this.handleClick(e)}>
 
                 <div className="chat-users-name">
