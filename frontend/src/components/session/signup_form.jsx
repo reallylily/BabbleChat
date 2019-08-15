@@ -136,7 +136,7 @@ class SignupForm extends React.Component {
         <option value="gu">Gujarati</option>
         <option value="ht">Haitian Creole</option>
         <option value="ha">Hausa</option>
-        <option value="haw">Hawaiianw</option>
+        <option value="haw">Hawaiian</option>
         <option value="he">Hebrew</option>
         <option value="hi">Hindi</option>
         <option value="hmn">Hmongn</option>

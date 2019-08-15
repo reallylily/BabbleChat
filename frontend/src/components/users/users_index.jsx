@@ -85,7 +85,10 @@ class UsersIndex extends React.Component {
             type="text"
             placeholder="Search for a user" />
 
+            <div>
+              Advanced 
 
+            </div>
 
             <div className="chat-users-nousers">No users match your criteria.</div>
           </div>
@@ -117,6 +120,12 @@ class UsersIndex extends React.Component {
               onChange={(e) => this.handleChange(e)}
               type="text"
               placeholder="Search for a user"  />
+
+            <div>
+              Advanced
+
+            </div>
+
             <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> </h2>
             <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> </h2>
           <div className="users-grid">
