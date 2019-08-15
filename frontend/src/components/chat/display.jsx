@@ -36,7 +36,11 @@ class Display extends React.Component {
                     <ul>
                         {this.messages.map((message, idx) => 
                             <li key={idx} className={message.userId === this.currentUserId ? "chat-box-message" : "chat-box-message-opponent"}>
-                                <TranslateMessageContainer text={message.message} key={idx} ownMessage={message.userId === this.currentUserId}/>
+                                <TranslateMessageContainer text={message.message} 
+                                key={idx} 
+                                ownMessage={message.userId === this.currentUserId}
+                                yourPic={this.props.yourPic}
+                                oppPic={this.props.oppPic} />
                             </li>)
                         }
                     </ul>

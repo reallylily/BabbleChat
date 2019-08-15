@@ -229,7 +229,9 @@ class Chat extends React.Component {
 
                 <Display className="chat-box-display-messages" 
                         messages={this.state.messages}
-                        currentUserId={this.props.currentUserId} />
+                        currentUserId={this.props.currentUserId}
+                        yourPic={this.props.currentUser.pic}
+                        oppPic={this.state.partner_pic} />
 
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit} className="chat-box-form">

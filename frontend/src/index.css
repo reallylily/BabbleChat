@@ -1126,8 +1126,30 @@ select {
   border-radius: 10px; 
 }
 
+
+.chat-box-image-text {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+}
+
+.chat-box-profile-image-wrapper-you {
+  padding-left: 0.5rem; 
+}
+
+.chat-box-profile-image-wrapper-opp {
+  padding-right: 0.5rem; 
+}
+
+
 .opponent {
   background: #fdcfcf;
+}
+
+.chat-box-profile-image {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 5px; 
 }
 
 .chat-box-message-detail:hover {
