@@ -24,6 +24,7 @@ class Chat extends React.Component {
             partner_handle: '',
             partner_learn_lang: '',
             partner_share_lang: '',
+            partner_pic: '',
         }
         // this.socket = io(this.state.endpoint);
         this.socket = io();
@@ -56,33 +57,23 @@ class Chat extends React.Component {
                 user_handle: this.props.currentUser.handle,
                 learning_language: languages[this.props.currentUser.to_learn],
                 sharing_language: languages[this.props.currentUser.to_share],
+                profile_picture: this.props.currentUser.pic,
                 roomId: this.props.roomId
             })
         });
         
-        // const socket = io(this.state.endpoint);
-        // this.socket.on('connect', () => {
-        //     console.log('Chat component is connected');
-        //     this.socket.emit('send_own_user_data', {
-        //         user_handle: this.props.currentUser.handle,
-        //         learning_language: languages[this.props.currentUser.to_learn],
-        //         sharing_language: languages[this.props.currentUser.to_share],
-        //         roomId: this.props.roomId
-        //     })
-        // }); 
-
-        // this.socket.emit('join_room', this.props.roomId);
-
         this.socket.on('chat_partner_data', (partner_data) => {
             console.log(partner_data);
             const partner_handle = partner_data['other_user_handle'];
             const partner_learn_lang = partner_data['other_learn_lang'];
             const partner_share_lang = partner_data['other_share_lang'];
+            const partner_pic = partner_data['other_profile_pic'];
             if (partner_handle !== this.props.currentUser.handle) {
                 this.setState({
                     partner_handle: partner_handle,
                     partner_learn_lang: partner_learn_lang,
                     partner_share_lang: partner_share_lang,
+                    partner_pic: partner_pic
                 });
             }
                 console.log(this.state);
@@ -92,7 +83,8 @@ class Chat extends React.Component {
             console.log('message received');
             let new_message_array = this.state.messages;
             new_message_array.push(message_object['message']);
-            this.setState({ messages: new_message_array, currentMessage: "" });
+            // new_message_array.push(message_object);
+            this.setState({ messages: new_message_array});
             console.log(this.state.messages);
         });
         document.addEventListener('mousedown', this.handleClickOutsideEmojiMenu);
@@ -129,6 +121,7 @@ class Chat extends React.Component {
         console.log(this.state);
         e.preventDefault();
         if (this.state.currentMessage !== '') {
+            this.setState({ currentMessage: "" })
             this.socket.emit('chat_message', {
                 message: this.state.currentMessage,
                 roomId: this.props.roomId,
@@ -227,15 +220,16 @@ class Chat extends React.Component {
     }
 
     render () {
-        console.log(this.state.gifs)
-        console.log(this.state.giphySearch)
+        // console.log(this.state.gifs)
+        // console.log(this.state.giphySearch)
         return (
             <>
             
             <div className="chat-box">
 
                 <Display className="chat-box-display-messages" 
-                        messages={this.state.messages} />
+                        messages={this.state.messages}
+                        currentUserId={this.props.currentUserId} />
 
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit} className="chat-box-form">
@@ -295,7 +289,7 @@ class Chat extends React.Component {
 
                             <br />
 
-                            <div className="emoji-items-list">
+                            {/* <div className="emoji-items-list">
                             {this.state.currentEmojiPage === 1 &&
                                 <>
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}><span role='img' aria-label="Smiling">😀</span></button>
@@ -531,7 +525,7 @@ class Chat extends React.Component {
                                     <button className="emoji-icon" onClick={(e) => this.addEmoji(e)}>🍞</button>
                                 </>
                             }
-                            </div>
+                            </div> */}
 
                         </div>}
                 </div>

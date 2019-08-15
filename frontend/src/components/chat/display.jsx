@@ -7,11 +7,12 @@ class Display extends React.Component {
         super(props);
         this.messages = this.props.messages;
         this.scrollToBottom = this.scrollToBottom.bind(this); 
-
+        this.currentUserId = this.props.currentUserId;
     }
 
     componentDidMount() {
         this.scrollToBottom(); 
+        console.log(this.currentUserId);
     }
 
     componentDidUpdate() {

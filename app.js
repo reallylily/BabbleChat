@@ -138,6 +138,7 @@ function onConnect(socket) {
         const user_handle = user_data_object['user_handle'];
         const learn_lang = user_data_object['learning_language'];
         const share_lang = user_data_object['sharing_language'];
+        const profile_pic = user_data_object['profile_picture'];
         const room_id = user_data_object['roomId'];
         console.log(user_data_object);
         console.log(room_id);
@@ -146,7 +147,8 @@ function onConnect(socket) {
         socket.to(room_id).emit('chat_partner_data', {
             other_user_handle: user_handle,
             other_learn_lang: learn_lang,
-            other_share_lang: share_lang
+            other_share_lang: share_lang,
+            other_profile_pic: profile_pic
         })
     })
 
