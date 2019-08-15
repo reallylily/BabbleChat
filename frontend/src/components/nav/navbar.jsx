@@ -51,12 +51,11 @@ class NavBar extends React.Component {
       return (
         <div className="navbar-fullscreen-tab">
           <Link to={'/users'} className={this.state.navbar1 ? "navbar-header-link-hover" : "navbar-header-link"}
-            onClick={() => this.handleClick1()}>Find a Babble Buddy</Link>
+            onClick={() => this.handleClick1()}><div style={{transform: 'translateY(10px)'}}>Babble</div></Link>
           <Link to={'/profile'} className={this.state.navbar3 ? "navbar-header-link-hover" : "navbar-header-link"}
-            onClick={() => this.handleClick3()}>Profile</Link>
-           
-          <span className="navbar-username">{this.props.currentUser.handle}  <img style={{transform: 'translateY(5px)', borderRadius: '5px'}} width="35px" height="35px" src={this.props.currentUser.pic} /></span>
-          <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
+            onClick={() => this.handleClick3()}><img style={{ borderRadius: '5px' }} width="35px" height="35px" src={this.props.currentUser.pic} /></Link>
+            
+            <button className="navbar-logout-button" onClick={this.logoutUser}>Logout</button>
         </div>
         )
       } else {

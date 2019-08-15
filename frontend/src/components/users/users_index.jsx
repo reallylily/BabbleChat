@@ -154,37 +154,42 @@ class UsersIndex extends React.Component {
         // Want to create search function 
         const all_users = users.concat(same_lang_users); 
         console.log(all_users.map(x => x.props.user))
-        console.log(languages); 
+        console.log(Object.keys(languages).length); 
         // console.log(all_users.map(x => x.props.user.date).sort())
       return (
         <>
 
         <div className="chat-users-page">
+            <span className="chat-users-search-icon"><i className="fas fa-search"></i></span>
             <input className="chat-users-searchbar"
               onChange={(e) => this.handleChange(e)}
               type="text"
               placeholder="Search for a user"  />
 
             <div className="chat-users-advanced">
-              <select name="learning-language"
+              <div className="chat-users-filters">Find other Babblers based on criteria</div>
+              <div style={{textAlign: 'left'}}>
+              Learning: <select name="learning-language"
                 onChange={this.handleLearningLanguage}
                 className="chat-users-selector-language">
                   <option value="none">None</option>
                   {Object.keys(languages).map(x => 
                     <option key={x} value={x}>{languages[x]}</option>)}
               </select>
+              </div>
 
-              <select name="speaking-language"
+              <div style={{ textAlign: 'left' }}>
+              Speaking: <select name="speaking-language"
                 onChange={this.handleSpeakingLanguage}
                 className="chat-users-selector-language">
                   <option value="none">None</option>
                 {Object.keys(languages).map(x =>
                   <option key={x} value={x}>{languages[x]}</option>)}
               </select>
+              </div>
             </div>
 
-            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> </h2>
-            <h2 className="chat-users-number"><span className="chat-users-digit">{same_lang_users.length} </span><span style={{fontWeight: 'bold'}}>{same_lang_users.length === 1 ? "BabbleBuddy" : "BabbleBuddies"}</span> who {same_lang_users.length === 1 ? "speaks" : "speak"} <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> </h2>
+            <h2 className="chat-users-number"><span className="chat-users-digit-default">{same_lang_users.length + users.length}</span> <span style={{ fontWeight: 'bold' }}>{same_lang_users.length + users.length === 1 ? "Babbler" : "Babblers"}</span>, <span className="chat-users-digit">{same_lang_users.length} </span> of which speak <span className="chat-users-active-language">{languages[this.props.currentUser.to_learn]}</span> </h2>
           <div className="users-grid">
               {same_lang_users}
               {users}
