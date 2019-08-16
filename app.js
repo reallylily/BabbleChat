@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport'); 
 
 const users = require('./routes/api/users'); 
-const tweets = require('./routes/api/tweets'); 
+// const tweets = require('./routes/api/tweets'); 
 const path = require('path');
 // const chat = require('./routes/chat');
 
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 // }); 
 
 app.use("/api/users", users); 
-app.use("/api/tweets", tweets); 
+// app.use("/api/tweets", tweets); 
 // app.use('/chat', chat);
 const port = process.env.PORT || 5000; 
 
