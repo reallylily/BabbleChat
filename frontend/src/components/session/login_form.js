@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginDemoUser = this.loginDemoUser.bind(this);
   }
 
   // Once the user has been authenticated, redirect to the Tweets page
@@ -45,6 +46,18 @@ class LoginForm extends React.Component {
       .then(()=> this.props.history.push('/profile'))
   }
 
+  loginDemoUser(num) {
+    const emailAddress = `demo${num}@babble.io`;
+    let user = {
+      email: emailAddress,
+      password: 'password'
+    };
+    this.setState({
+      email: user.email,
+      password: user.password
+    });
+    this.props.login(user).then(() => this.props.history.push('/profile'));
+  }
 
   render() {
     return (
@@ -87,7 +100,8 @@ class LoginForm extends React.Component {
               }
             <br/>
             <input type="submit" value="Submit" className="login-form-submit" />
-
+              <button onClick={() => this.loginDemoUser(1)}>Log In as Demo User 1</button>
+              <button onClick={() => this.loginDemoUser(2)}>Log In as Demo User 2</button>
               <div className="login-links">
                 Not a member yet? <Link to="/signup" className="login-link-to-signin">Sign Up</Link>
               </div>

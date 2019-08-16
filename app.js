@@ -125,6 +125,7 @@ function onConnect(socket) {
 
     socket.on('join_room', (room_id) => {
         let rooms = Object.keys(socket.rooms);
+        console.log(`user is in these rooms: ${rooms}`);
         socket.leave(rooms[0]);
         console.log(room_id);
         socket.join(room_id, () => {
