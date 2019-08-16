@@ -62,6 +62,7 @@ class UsersIndex extends React.Component {
 
   requestRoom(other_user_id) {
     const room_ids = [];
+    console.log(`This user's id is ${this.props.currentUserId} and they are requesting this user id: ${other_user_id}`);
     room_ids.push(this.props.currentUserId + other_user_id);
     room_ids.push(other_user_id + this.props.currentUserId);
     this.socket.emit('request_room', room_ids); 
