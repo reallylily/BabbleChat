@@ -4,9 +4,9 @@ import '../../index.css'
 
 const Footer = () => (
     <div className="footer">
-        <div><Link to={'/users'}>Hello</Link></div>
+        <div><Link to={'/about'}>Meet the Team</Link></div>
         <div>
-            Copyright &copy; 2019 BabbleChat {'\u00A0'}{'\u00A0'}
+            Copyright &copy; 2019 <Link to="/">BabbleChat</Link> {'\u00A0'}{'\u00A0'}
         </div>
     </div>
 )
