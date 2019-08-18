@@ -24,6 +24,10 @@ class Profile extends React.Component {
         // this.props.fetchUser(this.props.currentUser.id)
     }
 
+    // componentDidMount() {
+    //   this.props.isOnProfile();
+    // }
+
     componentWillReceiveProps(newState) {
         // this.setState({ tweets: newState.tweets });
     }

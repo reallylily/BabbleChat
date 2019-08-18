@@ -44,7 +44,7 @@ class Chat extends React.Component {
     }
 
     componentDidMount() {
-        
+
         let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
         fetch(giphyURL)
             .then(res => res.json())

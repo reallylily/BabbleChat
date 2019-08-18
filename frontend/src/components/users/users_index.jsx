@@ -73,6 +73,7 @@ class UsersIndex extends React.Component {
   }
 
   componentDidMount() {
+
     this.socket.on('connect', () => {
       console.log('User index component is connected');
     }); 
