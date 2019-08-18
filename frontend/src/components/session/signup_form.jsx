@@ -20,6 +20,7 @@ class SignupForm extends React.Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.loginDemoUser = this.loginDemoUser.bind(this);
     this.toggleHelp1 = this.toggleHelp1.bind(this); 
     this.toggleHelp2 = this.toggleHelp2.bind(this); 
     this.clearedErrors = false;
@@ -29,13 +30,13 @@ class SignupForm extends React.Component {
     this.props.fetchDog();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push('/profile');
-    }
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.signedIn === true) {
+  //     this.props.history.push('/profile');
+  //   }
 
-    this.setState({errors: nextProps.errors})
-  }
+  //   this.setState({errors: nextProps.errors})
+  // }
 
   toggleHelp1(e) {
     this.setState({
@@ -85,6 +86,15 @@ class SignupForm extends React.Component {
     })
 
     
+  }
+
+  loginDemoUser(num) {
+    const emailAddress = `demo${num}@babble.io`;
+    let user = {
+      email: emailAddress,
+      password: 'password'
+    };
+    this.props.login(user).then(()=> this.props.history.push('/profile'));
   }
 
   renderErrors() {
@@ -316,7 +326,8 @@ class SignupForm extends React.Component {
             </label>
             <input type="submit" value="Submit" className="signup-form-submit" />
             {this.renderErrors()}
-
+              <button onClick={() => this.loginDemoUser(1)}>Log In as Demo User 1</button>
+              <button onClick={() => this.loginDemoUser(2)}>Log In as Demo User 2</button>
             <div className="login-links">
               Already a member? <Link to="/login" className="login-link-to-signin">Login</Link>
             </div>

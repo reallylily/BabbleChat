@@ -15,6 +15,8 @@ class UsersIndexItem extends React.Component {
         this.setState({
             waiting: true 
         })
+        console.log(`Requested user id: ${this.props.user.handle}`)
+        console.log(`Requested user id: ${this.props.user._id}`)
         this.props.requestRoom(this.props.user._id);
     }
 

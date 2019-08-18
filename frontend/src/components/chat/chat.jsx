@@ -24,6 +24,7 @@ class Chat extends React.Component {
             partner_handle: '',
             partner_learn_lang: '',
             partner_share_lang: '',
+            partner_pic: '',
         }
         // this.socket = io(this.state.endpoint);
         this.socket = io();
@@ -56,33 +57,23 @@ class Chat extends React.Component {
                 user_handle: this.props.currentUser.handle,
                 learning_language: languages[this.props.currentUser.to_learn],
                 sharing_language: languages[this.props.currentUser.to_share],
+                profile_picture: this.props.currentUser.pic,
                 roomId: this.props.roomId
             })
         });
         
-        // const socket = io(this.state.endpoint);
-        // this.socket.on('connect', () => {
-        //     console.log('Chat component is connected');
-        //     this.socket.emit('send_own_user_data', {
-        //         user_handle: this.props.currentUser.handle,
-        //         learning_language: languages[this.props.currentUser.to_learn],
-        //         sharing_language: languages[this.props.currentUser.to_share],
-        //         roomId: this.props.roomId
-        //     })
-        // }); 
-
-        // this.socket.emit('join_room', this.props.roomId);
-
         this.socket.on('chat_partner_data', (partner_data) => {
             console.log(partner_data);
             const partner_handle = partner_data['other_user_handle'];
             const partner_learn_lang = partner_data['other_learn_lang'];
             const partner_share_lang = partner_data['other_share_lang'];
+            const partner_pic = partner_data['other_profile_pic'];
             if (partner_handle !== this.props.currentUser.handle) {
                 this.setState({
                     partner_handle: partner_handle,
                     partner_learn_lang: partner_learn_lang,
                     partner_share_lang: partner_share_lang,
+                    partner_pic: partner_pic
                 });
             }
                 console.log(this.state);
@@ -91,8 +82,9 @@ class Chat extends React.Component {
         this.socket.on('display_message', (message_object) => {
             console.log('message received');
             let new_message_array = this.state.messages;
-            new_message_array.push(message_object['message']);
-            this.setState({ messages: new_message_array, currentMessage: "" });
+            // new_message_array.push(message_object['message']);
+            new_message_array.push(message_object);
+            this.setState({ messages: new_message_array});
             console.log(this.state.messages);
         });
         document.addEventListener('mousedown', this.handleClickOutsideEmojiMenu);
@@ -129,8 +121,10 @@ class Chat extends React.Component {
         console.log(this.state);
         e.preventDefault();
         if (this.state.currentMessage !== '') {
+            this.setState({ currentMessage: "" })
             this.socket.emit('chat_message', {
-                message: this.state.currentMessage,
+                gif: false,
+                message: this.state.currentMessage.trim(),
                 roomId: this.props.roomId,
                 userId: this.props.currentUserId
             });
@@ -139,7 +133,14 @@ class Chat extends React.Component {
 
     handleSubmitImage(e) {
         console.log('hello')
-        console.log(e.currentTarget.value)
+        console.log(e.currentTarget.src)
+        this.socket.emit('chat_message', {
+            gif: true,
+            message: e.currentTarget.src,
+            roomId: this.props.roomId,
+            userId: this.props.currentUserId
+        });
+
     }
 
     triggerEmojiList(e) {
@@ -227,15 +228,19 @@ class Chat extends React.Component {
     }
 
     render () {
-        console.log(this.state.gifs)
-        console.log(this.state.giphySearch)
+        // console.log(this.state.gifs)
+        // console.log(this.state.giphySearch)
         return (
             <>
             
             <div className="chat-box">
+                    <div className="chat-box-tagline">You are chatting with <span className="chat-box-opp-name">{this.state.partner_handle}</span>.</div>
 
                 <Display className="chat-box-display-messages" 
-                        messages={this.state.messages} />
+                        messages={this.state.messages}
+                        currentUserId={this.props.currentUserId}
+                        yourPic={this.props.currentUser.pic}
+                        oppPic={this.state.partner_pic} />
 
                 <div className="input_field">
                     <form onSubmit={this.handleSubmit} className="chat-box-form">

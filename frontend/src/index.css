@@ -1044,6 +1044,49 @@ select {
   margin-bottom: 2rem; 
 }
 
+.chat-box-gif-you {
+  height: 200px; 
+  border-radius: 20px; 
+  border: 5px solid #005691; 
+
+  border-right: 10px solid #005691; 
+  border-left:  10px solid #005691; 
+
+  box-sizing: border-box; 
+}
+
+#chat-box-gif-opp {
+  height: 200px; 
+  border-radius: 20px; 
+  border: 5px solid #a40000; 
+
+  border-right: 10px solid #a40000; 
+  border-left:  10px solid #a40000; 
+
+  box-sizing: border-box; 
+}
+
+
+.popup-bubble {
+  color: white; 
+  background: #005691;  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; 
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 10px;
+}
+
+.popup-bubble-opponent {
+  color: white; 
+  background: #a40000;  
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; 
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 10px;
+}
+
 .chat-box-display-container {
   background: white; 
   height: 65vh; 
@@ -1055,7 +1098,9 @@ select {
 
 .chat-box-message {
   background: white; 
-  display: block; 
+  display: flex; 
+  justify-content: flex-end; 
+  /* float: right;  */
   /* float: left; 
   clear: left; 
   position: relative;  */
@@ -1071,8 +1116,9 @@ select {
 
 .chat-box-message-opponent {
   background: white; 
-  display: inline-block; 
-  float: right; 
+  display: flex; 
+  justify-content: flex-start; 
+  /* float: left;  */
   padding-left: 0.5rem; 
   padding-right: 0.5rem; 
   padding-top: 0.3rem; 
@@ -1131,6 +1177,44 @@ select {
   border-radius: 10px; 
 }
 
+
+.chat-box-image-text {
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
+}
+
+.chat-box-profile-image-wrapper-you {
+  padding-left: 0.5rem; 
+}
+
+.chat-box-profile-image-wrapper-opp {
+  padding-right: 0.5rem; 
+}
+
+
+.opponent {
+  background: #fdcfcf;
+}
+
+.chat-box-profile-image {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 5px; 
+}
+
+.chat-box-tagline {
+  font-family: 'Raleway', sans-serif; 
+  font-size: 1.2rem; 
+  margin-bottom: 0.75rem; 
+  display: block; 
+}
+
+.chat-box-opp-name {
+  color: #a40000; 
+  font-weight: bold; 
+}
+
 .chat-box-message-detail:hover {
   background: #005691; 
   color: white; 
@@ -1179,6 +1263,18 @@ select {
   cursor: pointer; 
 }
 
+.opponent:hover {
+  background: #a40000; 
+  color: white; 
+  padding-top: 0.3rem; 
+  padding-bottom: 0.3rem; 
+  padding-left: 0.15rem; 
+  padding-right: 0.15rem;  
+  border-radius: 10px; 
+  margin-bottom: 0.25rem; 
+  cursor: pointer; 
+}
+
 .chat-box-message-detail:focus {
   outline: none; 
 }
@@ -1211,7 +1307,7 @@ select {
   padding-right: 1rem; 
   padding-top: 0.35rem; 
   padding-bottom: 0.35rem; 
-  text-align: right; 
+  text-align: left; 
 }
 
 .chat-box-submit:focus {

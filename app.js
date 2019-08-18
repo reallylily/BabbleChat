@@ -10,7 +10,7 @@ const bodyParser = require('body-parser');
 const passport = require('passport'); 
 
 const users = require('./routes/api/users'); 
-const tweets = require('./routes/api/tweets'); 
+// const tweets = require('./routes/api/tweets'); 
 const path = require('path');
 // const chat = require('./routes/chat');
 
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
 // }); 
 
 app.use("/api/users", users); 
-app.use("/api/tweets", tweets); 
+// app.use("/api/tweets", tweets); 
 // app.use('/chat', chat);
 const port = process.env.PORT || 5000; 
 
@@ -125,6 +125,7 @@ function onConnect(socket) {
 
     socket.on('join_room', (room_id) => {
         let rooms = Object.keys(socket.rooms);
+        console.log(`user is in these rooms: ${rooms}`);
         socket.leave(rooms[0]);
         console.log(room_id);
         socket.join(room_id, () => {
@@ -138,6 +139,7 @@ function onConnect(socket) {
         const user_handle = user_data_object['user_handle'];
         const learn_lang = user_data_object['learning_language'];
         const share_lang = user_data_object['sharing_language'];
+        const profile_pic = user_data_object['profile_picture'];
         const room_id = user_data_object['roomId'];
         console.log(user_data_object);
         console.log(room_id);
@@ -146,7 +148,8 @@ function onConnect(socket) {
         socket.to(room_id).emit('chat_partner_data', {
             other_user_handle: user_handle,
             other_learn_lang: learn_lang,
-            other_share_lang: share_lang
+            other_share_lang: share_lang,
+            other_profile_pic: profile_pic
         })
     })
 
@@ -156,7 +159,9 @@ function onConnect(socket) {
         const room_id_of_message = message_object['roomId'];
         const message_body = message_object['message'];
         const author_id = message_object['userId'];
+        const is_gif = message_object['gif']
         io.sockets.in(room_id_of_message).emit('display_message', {
+            gif: is_gif,
             message: message_body,
             userId: author_id
         })
