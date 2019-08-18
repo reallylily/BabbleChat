@@ -61,29 +61,65 @@ table {
   width: 200px; 
   height: 200px; 
   border-radius: 30px; 
-  padding: 1.5rem; 
+  padding-top: 1rem; 
+  padding-left: 1.5rem; 
+  padding-right: 1.5rem; 
+  padding-bottom: 0.5rem; 
+  flex-grow: 2; 
+}
+
+.splash-minutes-ago {
+  font-family: 'Raleway', sans-serif; 
+  margin-top: 2.5rem; 
+  margin-bottom: 0.7rem; 
+  padding-left: 1rem; 
+}
+
+.splash-image-full-name {
+  padding-bottom: 0.5rem; 
+}
+
+.splash-image1 {
+  display: flex; 
+  justify-content: flex-start; 
+  background-color: #005691; 
+  border-radius: 15px;  
+  width: 80%; 
+  max-width: 700px; 
+  min-width: 500px; 
+  margin-bottom: 1.5rem; 
+  border-right: 25px solid #005691; 
+  margin-left: 1rem; 
 }
 
 .splash-image2 {
   display: flex; 
-  flex-direction: row; 
-  margin: 2rem; 
+  justify-content: flex-end; 
   background-color: #a40000; 
   border-radius: 15px;  
-  margin-left: 25rem; 
+  min-width: 500px; 
+  margin-left: 30%; 
+  margin-right: 1rem; 
+  border-left: 25px solid #a40000; 
 }
 
-.splash-image1 {
-  float: flex; 
-  flex-direction: row; 
-  margin: 2rem; 
-  background-color: #a40000;
-  border-radius: 15px; 
-  margin-right: 25rem; 
+.splash-image-attributes {
+  padding-left: 1.5rem; 
 }
 
+.splash-image-photo-wrapper {
+  background: #e8f1f5; 
+  font-family: 'Raleway', sans-serif; 
+  font-size: 1rem; 
+}
 
-
+.splash-mock-description {
+  display: flex; 
+  flex-direction: column; 
+  font-family: 'Raleway', sans-serif; 
+  color: #e8f1f5; 
+  padding: 1rem; 
+}
 
 .languages100 {
   font-family: 'Raleway', sans-serif; 
@@ -296,7 +332,7 @@ a {
   color: white; 
   font-family: 'Raleway', sans-serif;
   display: flex; 
-  justify-content: flex-end; 
+  justify-content: space-between; 
   padding-top: 0.5rem; 
   padding-bottom: 0.5rem; 
   width: 100%; 
