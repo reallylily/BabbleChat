@@ -53,6 +53,9 @@ table {
 /******************************/
 .about-title {
   font-family: 'Literata', serif;
+  font-size: 2rem; 
+  padding-top: 1.5rem; 
+  padding-left: 1.5rem; 
 }
 
 .about-profiles {
@@ -63,6 +66,7 @@ table {
   margin-top: 2rem; 
   margin-left: 10rem; 
   margin-right: 10rem; 
+  height: 450px; 
 }
 
 .about-profile-img {
@@ -74,8 +78,11 @@ table {
 }
 
 .about-profile-1 {
+  font-family: 'Raleway', sans-serif; 
+  font-size: 1.2rem; 
   text-align: center; 
-  background: #fafafa; 
+  background: #005691; 
+  color: white; 
   margin: 0 auto;
   margin-top: 3rem; 
   margin-bottom: 5rem; 
@@ -83,14 +90,17 @@ table {
   padding-bottom: 2rem; 
   padding-left: 1.5rem; 
   padding-right: 1.5rem; 
-  box-shadow: 0px 1px 20px rgb(206, 206, 206); 
+  box-shadow: 0px 1px 20px #cecece; 
   width: 200px; 
   transition: width 5s; 
+  transition: background-color 2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
 
 .about-profile-2 {
+  font-family: 'Raleway', sans-serif; 
   text-align: center; 
-  background: #fafafa; 
+  background: #005691; 
+  color: white; 
   margin: 0 auto;
   margin-top: 3rem; 
   margin-bottom: 5rem; 
@@ -101,11 +111,14 @@ table {
   box-shadow: 0px 1px 20px rgb(206, 206, 206); 
   width: 200px; 
   transition: width 5s; 
+  transition: background-color 1s linear; 
 }
 
 .about-profile-3 {
+  font-family: 'Raleway', sans-serif; 
   text-align: center; 
-  background: #fafafa; 
+  background: #005691; 
+  color: white; 
   margin: 0 auto;
   margin-top: 3rem; 
   margin-bottom: 5rem; 
@@ -116,18 +129,22 @@ table {
   box-shadow: 0px 1px 20px rgb(206, 206, 206); 
   width: 200px; 
   transition: width 5s; 
+  transition: background-color 1s linear; 
 }
 
 .about-profile-1:hover {
   width: 100%; 
+  background-color: #a40000; 
 }
 
 .about-profile-2:hover {
   width: 100%; 
+  background-color: #a40000; 
 }
 
 .about-profile-3:hover {
   width: 100%; 
+  background-color: #a40000; 
 }
 
 /*******************************/
@@ -137,6 +154,23 @@ table {
 .splash {
   background: #e8f1f5; 
   height: 100%; 
+}
+
+.splash-chat {
+  background-color: white; 
+  margin: 1rem; 
+  padding: 1rem; 
+  border-radius: 5px; 
+}
+
+.splash-chat-you {
+  background-color: #e8f1f5; 
+  display: flex; 
+}
+
+.splash-chat-them {
+  background-color: #fdcfcf;
+  display: inline-block;  
 }
 
 .splash-image-photo {
@@ -205,7 +239,7 @@ table {
 
 .languages100 {
   font-family: 'Raleway', sans-serif; 
-  font-size: 2.2rem; 
+  font-size: 1.2rem; 
   color: #e8f1f5; 
 }
 
@@ -263,6 +297,22 @@ table {
   z-index: -2; 
 }
 
+.bar2 {
+  position: relative; 
+  float: right; 
+  width: 80%; 
+  background-color: #005691; 
+  border-radius: 30px 0px 0px 30px; 
+  margin-top: 100px; 
+  margin-bottom: 75px; 
+  padding: 1.5rem;
+  padding-bottom: 2rem; 
+  padding-left: 3rem; 
+  font-family:  'Raleway', sans-serif; 
+  font-size: 1.3rem; 
+  color: #e8f1f5; 
+  line-height: 1.4; 
+}
 
 
 

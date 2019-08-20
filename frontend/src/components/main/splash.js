@@ -79,10 +79,9 @@ class MainPage extends React.Component {
           </div>
           </div>
 
-
         <div className="splash-minutes-ago">
-          <span style={{ fontWeight: 'bold', color: '#005691' }}>{this.state.name1} </span> and 
-          <span style={{ fontWeight: 'bold', color: '#a40000' }}> {this.state.name2}</span> have matched together {Math.floor(Math.random()*50)} minutes ago. 
+          <span style={{ fontWeight: 'bold', color: '#005691' }}>{this.state.name1} </span> and
+          <span style={{ fontWeight: 'bold', color: '#a40000' }}> {this.state.name2}</span> have matched together {Math.floor(Math.random() * 50)} minutes ago.
         </div>
 
         <div className="splash-image1">
@@ -132,20 +131,30 @@ class MainPage extends React.Component {
 
 
 
+        {/* <div className="splash-chat">
+          <div className="splash-chat-you">Hello</div>
+          <div className="splash-chat-them">Goodbye</div>
+          <div className="splash-chat-you">C'est la vie</div>
+          <div className="splash-chat-them">Good things</div>
+        </div> */}
 
-        <div style={{
-          float: 'right', width: '90%', height: '300px', border: '5px solid #005691', backgroundColor: 'transparent', 
-            borderRadius: '30px 0px 0px 30px', marginTop: '25px', marginBottom: '25px'}}>
-                   BabbleChat is a new, dynamic way to learn languages. Get matched with people all over the world, who are fluent speakers 
+
+        <div className="bar2">
+
+          Improve your skills, <span className="bolded-words">one word at a time</span>. 
+          <br />
+          <br />
+
+          <div className="description-paragraph">
+            <ul>
+              <li>Learn from over <span className="bolded-words2">100 languages</span>.</li>
+              <li><span className="bolded-words2">Live chat</span> with people all around the world.</li>
+              <li>Send <span className="bolded-words2">emojis</span> and <span className="bolded-words2">gifs</span>. </li>
+            </ul>
           </div>
-
-        <div style={{
-          float: 'right', width: '90%', height: '50px', backgroundColor: '#005691',
-          borderRadius: '30px 0px 0px 30px', marginTop: '25px', marginBottom: '150px',
-          padding: '2rem'
-        }}>
-          <span className="languages100">Over a 100 different languages to learn </span>
         </div>
+
+
 
         <Footer />
       </div>
