@@ -32,6 +32,8 @@ class Chat extends React.Component {
         this.setEmojiMenuRef = this.setEmojiMenuRef.bind(this); 
         
         this.handleClickOutsideEmojiMenu = this.handleClickOutsideEmojiMenu.bind(this); 
+
+        this.handleKeyDownGiphy = this.handleKeyDownGiphy.bind(this);
     }
 
 
@@ -183,13 +185,17 @@ class Chat extends React.Component {
         this.setState({
             giphySearch: e.target.value 
         })
+    }
 
-        let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
-        fetch(giphyURL)
-            .then(res => res.json())
-            .then(gifs => this.setState({
-                gifs: gifs.data.map(gif => gif.images.downsized.url)
-            }))
+    handleKeyDownGiphy(e) {
+        if (e.key === 'Enter') {
+            let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
+            fetch(giphyURL)
+                .then(res => res.json())
+                .then(gifs => this.setState({
+                    gifs: gifs.data.map(gif => gif.images.downsized.url)
+                }))
+        }
     }
 
     navigateOne(e) {
@@ -268,7 +274,8 @@ class Chat extends React.Component {
                             <input type="text" 
                                 className="giphy-search-bar"
                                 onClick={(e) => this.clearGiphySearch(e)}
-                                onChange={(e) => this.updateGiphySearch(e)} 
+                                onChange={(e) => this.updateGiphySearch(e)}
+                                onKeyDown={(e) => this.handleKeyDownGiphy(e)} 
                                 value={this.state.giphySearch} />
           
 
