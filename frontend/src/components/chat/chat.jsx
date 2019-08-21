@@ -33,10 +33,6 @@ class Chat extends React.Component {
         
         this.setGifMenuRef = this.setGifMenuRef.bind(this);
 
-        this.setGifButtonRef = this.setGifButtonRef.bind(this);
-
-        this.setEmojiButtonRef = this.setEmojiButtonRef.bind(this);
-
         this.handleClickOutsideEmojiMenu = this.handleClickOutsideEmojiMenu.bind(this); 
         
         this.handleKeyDownGiphy = this.handleKeyDownGiphy.bind(this);
@@ -114,22 +110,14 @@ class Chat extends React.Component {
         this.gifMenuRef = node;
     }
 
-    setEmojiButtonRef(node) {
-        this.emojiButtonRef = node;
-    }
-
-    setGifButtonRef(node) {
-        this.gifButtonRef = node;
-    }
-
     handleClickOutsideEmojiMenu(e) {
-        if (this.emojiMenuRef && !this.emojiMenuRef.contains(e.target) && !this.emojiButtonRef.contains(e.target)) {
+        if (this.emojiMenuRef && !this.emojiMenuRef.contains(e.target)) {
             this.setState({
                 displayEmoji: false 
             })
         }
 
-        if (this.gifMenuRef && !this.gifMenuRef.contains(e.target) && !this.gifButtonRef.contains(e.target)) {
+        if (this.gifMenuRef && !this.gifMenuRef.contains(e.target)) {
             this.setState({
                 displayGifs: false
             })
@@ -172,7 +160,7 @@ class Chat extends React.Component {
     triggerEmojiList(e) {
         e.preventDefault(); 
         this.setState({
-            displayEmoji: !this.state.displayEmoji,
+            displayEmoji: true,
             displayGifs: false
         })
     }
@@ -181,7 +169,7 @@ class Chat extends React.Component {
         e.preventDefault(); 
         this.setState({
             dislayEmoji: false,
-            displayGifs: !this.state.displayGifs
+            displayGifs: true
         })
     }
 
@@ -284,14 +272,12 @@ class Chat extends React.Component {
                         <button type="submit" style={{display: 'none'}}/>
 
                             <button className="chat-box-trigger-emoji-list-button"
-                                onClick={(e) => this.triggerGifList(e)}
-                                ref={this.setGifButtonRef}>
+                                onClick={(e) => this.triggerGifList(e)}>
                                 <i className="fas fa-video"></i>
                         </button>
 
                         <button className="chat-box-trigger-emoji-list-button"
-                            onClick={(e) => this.triggerEmojiList(e)}
-                            ref={this.setEmojiButtonRef}>
+                            onClick={(e) => this.triggerEmojiList(e)}>
                                 <i className="far fa-smile"></i>
                         </button>
                     </form> 
