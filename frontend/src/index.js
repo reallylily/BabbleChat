@@ -19,14 +19,14 @@ import { logout } from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
   let store;
 
-  // If a returning user has a session token stored in localStorage
-  if (localStorage.jwtToken) {
+  // If a returning user has a session token stored in sessionStorage
+  if (sessionStorage.jwtToken) {
 
     // Set the token as a common header for all axios requests
-    setAuthToken(localStorage.jwtToken);
+    setAuthToken(sessionStorage.jwtToken);
 
     // Decode the token to obtain the user's information
-    const decodedUser = jwt_decode(localStorage.jwtToken);
+    const decodedUser = jwt_decode(sessionStorage.jwtToken);
 
     // Create a preconfigured state we can immediately add to our store
     const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };

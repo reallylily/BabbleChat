@@ -124,14 +124,19 @@ function onConnect(socket) {
     });
 
     socket.on('join_room', (room_id) => {
-        let rooms = Object.keys(socket.rooms);
+        const rooms = Object.keys(socket.rooms);
         console.log(`user is in these rooms: ${rooms}`);
         socket.leave(rooms[0]);
         console.log(room_id);
         socket.join(room_id, () => {
             let rooms = Object.keys(socket.rooms);
-            console.log(`joining these rooms: ${rooms}`);}
+            console.log(`joining these rooms: ${rooms}`);
+            console.log(`user is now in these rooms: ${Object.keys(socket.rooms)}`);
+            console.log(`users in this room are: ${io.sockets.adapter.rooms[Object.keys(socket.rooms)[0]].sockets}`)
+            }
+            
         );
+        
         io.sockets.in(room_id).emit('request_partner_data');
     })
 
@@ -141,6 +146,7 @@ function onConnect(socket) {
         const share_lang = user_data_object['sharing_language'];
         const profile_pic = user_data_object['profile_picture'];
         const room_id = user_data_object['roomId'];
+        const message_array = user_data_object['message_array'];
         console.log(user_data_object);
         console.log(room_id);
         // io.sockets.in(room_id).
@@ -149,7 +155,8 @@ function onConnect(socket) {
             other_user_handle: user_handle,
             other_learn_lang: learn_lang,
             other_share_lang: share_lang,
-            other_profile_pic: profile_pic
+            other_profile_pic: profile_pic,
+            other_message_array: message_array
         })
     })
 

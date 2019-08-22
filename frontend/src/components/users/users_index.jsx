@@ -70,6 +70,7 @@ class UsersIndex extends React.Component {
 
   componentWillMount() {
     this.props.fetchUsers();
+    sessionStorage.removeItem('storedRoomId');
   }
 
   componentDidMount() {

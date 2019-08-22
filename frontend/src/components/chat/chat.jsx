@@ -25,6 +25,12 @@ class Chat extends React.Component {
             partner_learn_lang: '',
             partner_share_lang: '',
             partner_pic: '',
+            roomId: '',
+            ownId: '',
+            ownHandle: '',
+            ownLearnLang: '',
+            ownShareLang: '',
+            ownPic: ''
         }
         // this.socket = io(this.state.endpoint);
         this.socket = io();
@@ -40,15 +46,49 @@ class Chat extends React.Component {
 
 
     componentWillMount() {
+        console.log(this.props.currentUser);
         this.socket.on('connect', () => {
             console.log('Chat component is connected');
         });
 
-        this.socket.emit('join_room', this.props.roomId);
+        if (this.props.roomId) {
+            sessionStorage.setItem('storedRoomId', this.props.roomId);
+        };
+
+        if (this.props.currentUser) {
+            sessionStorage.setItem('ownId', this.props.currentUser.id);
+            sessionStorage.setItem('ownHandle', this.props.currentUser.handle);
+            sessionStorage.setItem('ownLearnLang', this.props.currentUser.to_learn);
+            sessionStorage.setItem('ownShareLang', this.props.currentUser.to_share);
+            sessionStorage.setItem('ownPic', this.props.currentUser.pic);
+        }
+
+        console.log(`This is the room id from props: ${this.props.roomId}`);
+        console.log(`This is the room id from session storage: ${sessionStorage.getItem('storedRoomId')}`);
+
+        const roomIdToJoin = sessionStorage.getItem('storedRoomId');
+        const userId = sessionStorage.getItem('ownId');
+        const userHandle = sessionStorage.getItem('ownHandle');
+        const userLearnLang = sessionStorage.getItem('ownLearnLang');
+        const userShareLang = sessionStorage.getItem('ownShareLang');
+        const userPic = sessionStorage.getItem('ownPic');
+
+        console.log(`roomIdToJoin: ${roomIdToJoin}`);
+        console.log(`userHandle: ${userHandle}`)
+
+        this.socket.emit('join_room', roomIdToJoin);
+        this.setState({
+            ownId: userId,
+            ownHandle: userHandle,
+            ownLearnLang: userLearnLang,
+            ownShareLang: userShareLang,
+            ownPic: userPic,
+            roomId: roomIdToJoin
+        });
     }
 
     componentDidMount() {
-
+        console.log(`this is state when component mounts: ${this.state.ownHandle}`);
         let giphyURL = `https://api.giphy.com/v1/gifs/search?api_key=vlPTCQfyNUPbvRZ4Yo9Dcnwa0VJYNlXQ&q=${this.state.giphySearch}&limit=25&offset=0&rating=G&lang=en`;
         fetch(giphyURL)
             .then(res => res.json())
@@ -58,11 +98,12 @@ class Chat extends React.Component {
 
         this.socket.on('request_partner_data', () => {
             this.socket.emit('send_own_user_data', {
-                user_handle: this.props.currentUser.handle,
-                learning_language: languages[this.props.currentUser.to_learn],
-                sharing_language: languages[this.props.currentUser.to_share],
-                profile_picture: this.props.currentUser.pic,
-                roomId: this.props.roomId
+                user_handle: this.state.ownHandle,
+                learning_language: languages[this.state.ownLearnLang],
+                sharing_language: languages[this.state.ownShareLang],
+                profile_picture: this.state.ownPic,
+                roomId: this.state.roomId,
+                message_array: this.state.messages
             })
         });
         
@@ -72,12 +113,15 @@ class Chat extends React.Component {
             const partner_learn_lang = partner_data['other_learn_lang'];
             const partner_share_lang = partner_data['other_share_lang'];
             const partner_pic = partner_data['other_profile_pic'];
-            if (partner_handle !== this.props.currentUser.handle) {
+            const other_message_array = partner_data['other_message_array'];
+            const new_message_array = this.state.messages.length >= other_message_array.length ? this.state.messages : other_message_array;
+            if (partner_handle !== this.state.ownHandle) {
                 this.setState({
                     partner_handle: partner_handle,
                     partner_learn_lang: partner_learn_lang,
                     partner_share_lang: partner_share_lang,
-                    partner_pic: partner_pic
+                    partner_pic: partner_pic,
+                    messages: new_message_array
                 });
             }
                 console.log(this.state);
@@ -139,8 +183,8 @@ class Chat extends React.Component {
             this.socket.emit('chat_message', {
                 gif: false,
                 message: this.state.currentMessage.trim(),
-                roomId: this.props.roomId,
-                userId: this.props.currentUserId
+                roomId: this.state.roomId,
+                userId: this.state.ownId
             });
         }   
     }
@@ -151,8 +195,8 @@ class Chat extends React.Component {
         this.socket.emit('chat_message', {
             gif: true,
             message: e.currentTarget.src,
-            roomId: this.props.roomId,
-            userId: this.props.currentUserId
+            roomId: this.state.roomId,
+            userId: this.state.ownId
         });
 
     }
@@ -250,6 +294,7 @@ class Chat extends React.Component {
     render () {
         // console.log(this.state.gifs)
         // console.log(this.state.giphySearch)
+
         return (
             <>
             
@@ -258,8 +303,8 @@ class Chat extends React.Component {
 
                 <Display className="chat-box-display-messages" 
                         messages={this.state.messages}
-                        currentUserId={this.props.currentUserId}
-                        yourPic={this.props.currentUser.pic}
+                        currentUserId={this.state.ownId}
+                        yourPic={this.state.ownPic}
                         oppPic={this.state.partner_pic} />
 
                 <div className="input_field">

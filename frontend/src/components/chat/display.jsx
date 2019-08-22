@@ -29,12 +29,19 @@ class Display extends React.Component {
         //     <TranslateMessageContainer text={message.message} key={idx}/>
         // ));
         
-
+        console.log(`Messages according to display component: ${this.messages}`);
+        console.log(`Props received by display component: ${this.props.messages}`);
+        if (!this.props.messages) {
+            return (
+                <></>
+            )
+        }
         return (
+            
             <div className="chat-box-display-container">
                 <div className="messages">
                     <ul>
-                        {this.messages.map((message, idx) => 
+                        {this.props.messages.map((message, idx) => 
                             <li key={idx} className={message.userId === this.currentUserId ? "chat-box-message" : "chat-box-message-opponent"}>
                                 {message.gif ?
 
